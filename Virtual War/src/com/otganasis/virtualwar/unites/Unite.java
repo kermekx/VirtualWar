@@ -8,11 +8,13 @@ public abstract class Unite {
 	protected int degats;
 	protected int armure;
 
-	abstract void deplacement();
-
 	abstract void crier();
 
 	abstract void danser();
+	
+	abstract void getPosition();
+	
+	abstract void setPosition();
 
 	public String toString() {
 		String str = "Je suis une unite de type " + this.getClass().getName() + ", j'ai "

@@ -1,6 +1,6 @@
 package com.otganasis.virtualwar.unites;
 
-public class Tank extends Unite {
+public class Tank extends Amovible {
 
 	public Tank(int ID, int PV, int portee, int degats, int armure){
 		this.ID = ID;
@@ -19,6 +19,18 @@ public class Tank extends Unite {
 	}
 
 	void danser() {
+		
+	}
+
+	@Override
+	void getPosition() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void setPosition() {
+		// TODO Auto-generated method stub
 		
 	}
 
