@@ -6,6 +6,7 @@ public class VirtualWar {
 
 	public static void main(String[] args) {
 
+		// TEst git
 		VirtualWarFrame frame = new VirtualWarFrame();
 
 		frame.setVisible(true);
