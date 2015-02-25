@@ -1,0 +1,9 @@
+package com.otgenasis.virtualwar;
+
+public class VirtualWar {
+	
+	public static void main(String[] args) {
+				
+	}
+
+}

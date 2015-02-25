@@ -1,0 +1,14 @@
+package com.otgenasis.virtualwar;
+
+import com.otgenasis.virtualwar.frame.Frame;
+
+public class VirtualWar {
+	
+	public static void main(String[] args) {
+		
+		Frame frame = new Frame();
+		
+		
+	}
+
+}

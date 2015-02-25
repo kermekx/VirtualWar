@@ -1,0 +1,22 @@
+package com.otgenasis.virtualwar.frame;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+
+public class Frame extends JFrame {
+	
+	private double width;
+	private double height;
+	private boolean fullScreen = false;
+	
+	public Frame() {
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		width = screenSize.getWidth() * 0.5d;
+		height = screenSize.getHeight() * 0.5d;
+		
+	}
+
+}
