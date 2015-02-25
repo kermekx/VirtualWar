@@ -33,6 +33,9 @@ public class VirtualWarFrame extends JFrame {
 
 	}
 
+	/**
+	 * Rend la fenetre en mode pleinne ecran
+	 */
 	public void setFullScreen() {
 
 		GraphicsDevice device = GraphicsEnvironment
