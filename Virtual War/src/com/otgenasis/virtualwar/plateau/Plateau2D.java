@@ -1,6 +1,6 @@
 package com.otgenasis.virtualwar.plateau;
 
-import com.otganasis.virtualwar.unites.Unite;
+import com.otgenasis.virtualwar.unites.Unite;
 
 public class Plateau2D {
 

@@ -1,4 +1,4 @@
-package com.otganasis.virtualwar.unites;
+package com.otgenasis.virtualwar.unites;
 
 public class Base extends Fixe {
 

@@ -1,5 +1,6 @@
 package com.otgenasis.virtualwar;
 
+import java.awt.Component;
 import java.awt.Rectangle;
 
 import com.otgenasis.virtualwar.component.MenuComponent;
@@ -41,7 +42,21 @@ public class VirtualWar implements Runnable {
 	@Override
 	public void run() {
 		
-		frame.getContentPane().add(new MenuComponent(this));
+		setContentPane(new MenuComponent(this));
+		
+	}
+	
+
+	public void switchView() {
+		frame.switchView();
+	}
+	
+	public void setContentPane(Component component) {
+		
+		frame.getContentPane().removeAll();
+		frame.getContentPane().add(component);
+		frame.getContentPane().revalidate();
+		frame.repaint();
 		
 	}
 	
@@ -51,6 +66,10 @@ public class VirtualWar implements Runnable {
 	 */
 	public Rectangle getFrameBounds() {
 		return frame.getBounds();
+	}
+
+	public boolean isFullScreen() {
+		return frame.isFullScreen();
 	}
 
 }
