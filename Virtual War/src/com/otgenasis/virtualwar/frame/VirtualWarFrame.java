@@ -1,6 +1,8 @@
 package com.otgenasis.virtualwar.frame;
 
 import java.awt.Dimension;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -29,6 +31,23 @@ public class VirtualWarFrame extends JFrame {
 
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+	}
+
+	public void setFullScreen() {
+
+		GraphicsDevice device = GraphicsEnvironment
+				.getLocalGraphicsEnvironment().getScreenDevices()[0];
+
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+		width = screenSize.getWidth();
+		height = screenSize.getHeight();
+
+		fullScreen = true;
+
+		this.setBounds(0, 0, (int) width, (int) height);
+		
+		device.setFullScreenWindow(this);
 	}
 
 }
