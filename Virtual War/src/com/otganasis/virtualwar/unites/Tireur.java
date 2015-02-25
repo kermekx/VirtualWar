@@ -22,16 +22,4 @@ public class Tireur extends Amovible {
 		
 	}
 
-	@Override
-	void getPosition() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	void setPosition() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

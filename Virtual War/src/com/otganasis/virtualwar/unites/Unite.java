@@ -4,23 +4,24 @@ public abstract class Unite {
 
 	protected int ID;
 	protected int PV;
-	protected int portee;
-	protected int degats;
 	protected int armure;
+	protected int positionX;
+	protected int positionY;
 
-	abstract void crier();
+	public String getPosition(){
+		return "[" + positionX + "][" + positionY + "]";
+	}
 
-	abstract void danser();
-	
-	abstract void getPosition();
-	
-	abstract void setPosition();
+	public void setPosition(int positionX, int positionY){
+		this.positionX = positionX;
+		this.positionY = positionY;
+	}
 
 	public String toString() {
-		String str = "Je suis une unite de type " + this.getClass().getName() + ", j'ai "
+		/*String str = "Je suis une unite de type " + this.getClass().getName() + ", j'ai "
 				+ this.PV + " points de vie, une portée de " + this.portee
 				+ " avec des degats de " + this.degats + " et une armure de "
-				+ this.armure + ".";
-		return str;
+				+ this.armure + ".";*/
+		return "" + this.getClass().getSimpleName();
 	}
 }

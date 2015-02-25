@@ -2,28 +2,24 @@ package com.otganasis.virtualwar.unites;
 
 public class Base extends Fixe {
 
-	@Override
-	void crier() {
-		// TODO Auto-generated method stub
-		
+	private Unite[] unites = new Unite[3];
+	
+	public Base(int ID, int PV, int armure){
+		this.ID = ID;
+		this.PV = PV;
+		this.armure = armure;
 	}
 
-	@Override
-	void danser() {
-		// TODO Auto-generated method stub
-		
+	public String getUnites() {
+		String str = "";
+		for(int i = 0; i < unites.length; i++){
+			str = str + "[" + unites[i] + "]";
+		}
+		return str;
 	}
 
-	@Override
-	void getPosition() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	void setPosition() {
-		// TODO Auto-generated method stub
-		
+	public void setUnites(Unite[] unites) {
+		this.unites = unites;
 	}
 
 }
