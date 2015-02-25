@@ -1,0 +1,14 @@
+package com.otgenasis.virtualwar;
+
+public class VirtualWar {
+	
+	public static void main(String[] args) {
+		
+		for(String arg : args) {
+			//TODO: Lire les argumments
+		}
+		
+		
+	}
+
+}
