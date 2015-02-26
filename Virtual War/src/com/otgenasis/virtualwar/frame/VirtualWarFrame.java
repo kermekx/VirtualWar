@@ -38,6 +38,8 @@ public class VirtualWarFrame extends JFrame {
 	 */
 	public void setFullScreen() {
 
+		setVisible(false);
+		
 		GraphicsDevice device = GraphicsEnvironment
 				.getLocalGraphicsEnvironment().getScreenDevices()[0];
 
@@ -50,7 +52,55 @@ public class VirtualWarFrame extends JFrame {
 
 		this.setBounds(0, 0, (int) width, (int) height);
 		
+		if(isDisplayable())dispose();
+		
+		setResizable(false);
+		setUndecorated(true);
+		
 		device.setFullScreenWindow(this);
+		
+		setVisible(true);
+	}
+	
+	public void setWindow() {
+		
+		setVisible(false);
+		
+		GraphicsDevice device = GraphicsEnvironment
+				.getLocalGraphicsEnvironment().getScreenDevices()[0];
+		
+		device.setFullScreenWindow(null);
+		
+		if(isDisplayable())dispose();
+		
+		setResizable(true);
+		setUndecorated(false);		
+		setVisible(true);
+		
+		pack();
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+		width = screenSize.getWidth() * 0.5d;
+		height = screenSize.getHeight() * 0.5d;
+
+		double posX = width * 0.5d;
+		double posY = height * 0.5d;
+		
+		fullScreen = false;
+
+		this.setBounds((int) posX, (int) posY, (int) width, (int) height);
+	}
+
+	public boolean isFullScreen() {
+		return fullScreen;
+	}
+
+	public void switchView() {
+		if(fullScreen) 
+			setWindow();
+		else
+			setFullScreen();
 	}
 
 }

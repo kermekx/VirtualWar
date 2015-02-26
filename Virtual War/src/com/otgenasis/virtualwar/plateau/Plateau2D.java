@@ -1,8 +1,12 @@
 package com.otgenasis.virtualwar.plateau;
 
+<<<<<<< HEAD
 import com.otganasis.virtualwar.unites.Base;
 import com.otganasis.virtualwar.unites.Tireur;
 import com.otganasis.virtualwar.unites.Unite;
+=======
+import com.otgenasis.virtualwar.unites.Unite;
+>>>>>>> origin/master
 
 public class Plateau2D {
 
