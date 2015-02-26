@@ -2,10 +2,10 @@ package com.otgenasis.virtualwar.plateau;
 
 import java.util.Scanner;
 
-import com.otganasis.virtualwar.unites.Piegeur;
-import com.otganasis.virtualwar.unites.Tank;
-import com.otganasis.virtualwar.unites.Tireur;
-import com.otganasis.virtualwar.unites.Unite;
+import com.otgenasis.virtualwar.unites.Piegeur;
+import com.otgenasis.virtualwar.unites.Tank;
+import com.otgenasis.virtualwar.unites.Tireur;
+import com.otgenasis.virtualwar.unites.Unite;
 
 public class MainTestPlateau2D {
 	public static void main(String[] args) {
