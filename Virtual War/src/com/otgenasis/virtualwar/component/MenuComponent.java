@@ -1,20 +1,25 @@
 package com.otgenasis.virtualwar.component;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
-import javax.swing.JComponent;
 
 import com.otgenasis.virtualwar.VirtualWar;
 
+/**
+ * affichage du menu principale
+ * 
+ * @author kevin MESSIAEN
+ *
+ */
 public class MenuComponent extends BaseComponent {
+
+	/**
+	 * generated serial version ID
+	 */
+	private static final long serialVersionUID = -8623759935837046445L;
 
 	public MenuComponent(VirtualWar vw) {
 		super(vw);

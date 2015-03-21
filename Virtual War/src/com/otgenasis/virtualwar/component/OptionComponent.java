@@ -1,6 +1,7 @@
 package com.otgenasis.virtualwar.component;
 
 import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -8,7 +9,18 @@ import java.awt.event.MouseEvent;
 
 import com.otgenasis.virtualwar.VirtualWar;
 
+/**
+ * affichage du menu option
+ * 
+ * @author kevin MESSIAEN
+ *
+ */
 public class OptionComponent extends BaseComponent {
+
+	/**
+	 * generated serial version ID
+	 */
+	private static final long serialVersionUID = -2674199765225940606L;
 
 	public OptionComponent(VirtualWar vw) {
 		super(vw);
