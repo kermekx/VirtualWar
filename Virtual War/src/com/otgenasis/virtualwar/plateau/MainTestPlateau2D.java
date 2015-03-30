@@ -9,7 +9,7 @@ import com.otgenasis.virtualwar.unites.Unite;
 
 public class MainTestPlateau2D {
 	public static void main(String[] args) {
-		Plateau2D p = new Plateau2D();
+		Plateau p = new Plateau();
 		///////////////////////////////////////////////////////
 		Unite[] tabUnites = new Unite[3];
 		String res = "";

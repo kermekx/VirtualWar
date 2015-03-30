@@ -4,17 +4,17 @@ import com.otgenasis.virtualwar.unites.Base;
 import com.otgenasis.virtualwar.unites.Unite;
 
 
-public class Plateau2D {
+public class Plateau {
 
 	private Unite[][] map;
 	private int longueur = 10;
 	private int largeur = 15;
 
-	public Plateau2D() {
+	public Plateau() {
 		map = new Unite[longueur][largeur];
 	}
 
-	public Plateau2D(int longueur, int largeur) {
+	public Plateau(int longueur, int largeur) {
 		this.setLongueur(longueur);
 		this.setLargeur(largeur);
 	}
