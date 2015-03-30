@@ -23,7 +23,7 @@ public class VirtualWar implements Runnable {
 	/**
 	 * Crée une instance principale pour le jeu
 	 * 
-	 * @param Frame
+	 * @param frame
 	 *            principale du jeu
 	 */
 	public VirtualWar(VirtualWarFrame frame) {
@@ -38,8 +38,9 @@ public class VirtualWar implements Runnable {
 	 * envoie au menu principale
 	 * 
 	 * @param args
-	 *            :
-	 * @param -f : mode plein écran dès le lancement -d : mode débuggage
+	 *            : <BR>
+	 *            -f : mode plein écran dès le lancement <BR>
+	 *            -d : mode débuggage
 	 */
 	public static void main(String[] args) {
 

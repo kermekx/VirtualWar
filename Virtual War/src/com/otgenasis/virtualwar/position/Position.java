@@ -37,6 +37,11 @@ public class Position {
 		point = new Point(x, y);
 	}
 
+	@Override
+	public String toString() {
+		return "Position [point=" + point + "]";
+	}
+
 	/**
 	 * revoie le point de la position
 	 * 
@@ -69,6 +74,7 @@ public class Position {
 	 * assigne la coordonée x
 	 * 
 	 * @param x
+	 *            position x
 	 */
 	public void setX(double x) {
 		point.setLocation(x, getY());
@@ -87,6 +93,7 @@ public class Position {
 	 * assigne la coordonée y
 	 * 
 	 * @param y
+	 *            position y
 	 */
 	public void setY(double y) {
 		point.setLocation(getX(), y);
@@ -96,7 +103,9 @@ public class Position {
 	 * assigne les coordonées x et y
 	 * 
 	 * @param x
+	 *            position x
 	 * @param y
+	 *            position y
 	 */
 	public void setPosition(double x, double y) {
 		point.setLocation(x, y);
