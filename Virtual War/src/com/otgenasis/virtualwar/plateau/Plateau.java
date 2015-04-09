@@ -23,6 +23,10 @@ public class Plateau {
 		return res;
 	}
 	
+	public Cellule[][] getPlateau() {
+		return plateau;
+	}
+	
 	public static void main(String[] args) {
 		Plateau p = new Plateau();
 		System.out.println(p.toString());
