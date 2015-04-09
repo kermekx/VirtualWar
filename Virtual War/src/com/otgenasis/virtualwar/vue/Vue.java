@@ -38,6 +38,6 @@ public class Vue {
 			}
 			vue += "\n";
 		}
-		return null;
+		return vue;
 	}
 }

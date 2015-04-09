@@ -3,6 +3,7 @@ package com.otgenasis.virtualwar.robot;
 import java.util.List;
 
 import com.otgenasis.virtualwar.coordonnees.Coordonnees;
+import com.otgenasis.virtualwar.vue.Vue;
 
 public abstract class Robot {
 
