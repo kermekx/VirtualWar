@@ -16,7 +16,7 @@ public class Plateau {
 		String res = "";
 		for (int i = 0; i < plateau.length; i++) {
 			for (int j = 0; j < plateau[i].length; j++) {
-				res += "[" + "]";
+				res += "[" + plateau[j].toString() + "]";
 			}
 			res += "\n";
 		}
