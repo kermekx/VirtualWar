@@ -1,7 +1,13 @@
 package com.otgenasis.virtualwar.plateau;
 
 public class Base extends Cellule {
-
+	
+	private int equipe = 0;
+	
+	public int getEquipe(){
+		return this.equipe;
+	}
+	
 	@Override
 	void deplaceSur(Robot r) {
 		// TODO Auto-generated method stub
@@ -10,8 +16,7 @@ public class Base extends Cellule {
 
 	@Override
 	void ajoute(int equipe) {
-		// TODO Auto-generated method stub
-		
+		this.equipe = equipe;
 	}
 
 	@Override
