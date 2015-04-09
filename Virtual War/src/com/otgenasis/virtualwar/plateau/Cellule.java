@@ -9,7 +9,7 @@ public abstract class Cellule {
 	protected int base = 0;
 	String image;
 	Coordonnees c;
-	Robot robot;
+	protected Robot robot;
 	
 	public Cellule(int x, int y){
 		c = new Coordonnees(x, y);

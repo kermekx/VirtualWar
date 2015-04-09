@@ -25,12 +25,14 @@ public class Vue {
 				vue += "[";
 				if (cellules[i][j] instanceof Base) {
 					Base base = (Base) cellules[i][j];
-					vue += base.getEquipe();
+					vue += (base.getEquipe() == equipe) ? "B" : "b";
 				} else if (cellules[i][j] instanceof Case) {
 					Case cas = (Case) cellules[i][j];
-					if (cas.getContenu() != null
-							&& cas.getContenu().getEquipe() == equipe)
-						vue += cas.getContenu().toString().substring(0, 1);
+					if (cas.getContenu() != null)
+						vue += (cas.getContenu().getEquipe() == equipe) ? cas
+								.getContenu().getType().substring(0, 1) : cas
+								.getContenu().getType().substring(0, 1)
+								.toLowerCase();
 					else
 						vue += " ";
 				} else
@@ -48,7 +50,7 @@ public class Vue {
 			for (int j = 0; j < cellules[0].length; j++) {
 				if (cellules[i][j] instanceof Base) {
 					Base base = (Base) cellules[i][j];
-					if(base.getEquipe() == equipe)
+					if (base.getEquipe() == equipe)
 						return base.getCoordonnees();
 				}
 			}
