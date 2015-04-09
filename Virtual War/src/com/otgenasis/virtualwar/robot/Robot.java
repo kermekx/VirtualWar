@@ -12,12 +12,10 @@ public abstract class Robot {
 	private final Vue vue;
 
 	public Robot(Vue vue, int x, int y, int equipe) {
-		energie = 50;
 		this.vue = vue;
 		coord = new Coordonnees(x, y);
 		this.equipe = equipe;
 	}
-
 	public boolean estSurBase() {
 		return coord.equals(vue.getBase(equipe));
 	}
