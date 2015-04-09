@@ -1,5 +1,6 @@
 package com.otgenasis.virtualwar.vue;
 
+import com.otgenasis.virtualwar.coordonnees.Coordonnees;
 import com.otgenasis.virtualwar.plateau.Base;
 import com.otgenasis.virtualwar.plateau.Case;
 import com.otgenasis.virtualwar.plateau.Cellule;
@@ -37,6 +38,20 @@ public class Vue {
 				vue += "]";
 			}
 			vue += "\n";
+		}
+		return vue;
+	}
+
+	public Coordonnees getBase(int equipe) {
+		Cellule[][] cellules = plateau.getPlateau();
+		for (int i = 0; i < cellules.length; i++) {
+			for (int j = 0; j < cellules[0].length; j++) {
+				if (cellules[i][j] instanceof Base) {
+					Base base = (Base) cellules[i][j];
+					if(base.getEquipe() == equipe)
+						return base.getCoordonnees();
+				}
+			}
 		}
 		return null;
 	}
