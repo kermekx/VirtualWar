@@ -40,8 +40,6 @@ public class Vue {
 			vue += "\n";
 		}
 		return vue;
-<<<<<<< HEAD
-=======
 	}
 
 	public Coordonnees getBase(int equipe) {
@@ -56,6 +54,5 @@ public class Vue {
 			}
 		}
 		return null;
->>>>>>> origin/master
 	}
 }

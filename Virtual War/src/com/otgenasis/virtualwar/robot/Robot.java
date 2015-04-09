@@ -54,6 +54,14 @@ public abstract class Robot {
 		return "Robot [energie=" + energie + ", equipe=" + equipe + ", coord="
 				+ coord + "]";
 	}
+	
+	public void subitTir() {
+		energie -= getCoutAction();
+	}
+	
+	public  void subitMine() {
+		energie -= getCoutAction();
+	}
 
 	public abstract boolean peutTirer();
 	
@@ -68,9 +76,5 @@ public abstract class Robot {
 	public abstract String getType();
 	
 	public abstract List<Coordonnees> getDeplacements();
-	
-	public abstract void subitTir();
-	
-	public abstract void subitMine();
 	
 }
