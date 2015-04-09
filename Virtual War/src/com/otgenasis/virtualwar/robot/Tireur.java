@@ -1,5 +1,6 @@
 package com.otgenasis.virtualwar.robot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.otgenasis.virtualwar.coordonnees.Coordonnees;
@@ -21,8 +22,7 @@ public class Tireur extends Robot {
 
 	@Override
 	public int getCoutAction() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 3;
 	}
 
 	@Override
@@ -32,38 +32,27 @@ public class Tireur extends Robot {
 
 	@Override
 	public int getCoutTir() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 2;
 	}
 
 	@Override
 	public int getCoutMine() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Tireur";
 	}
 
 	@Override
 	public List<Coordonnees> getDeplacements() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void subitTir() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void subitMine() {
-		// TODO Auto-generated method stub
-		
+		deplacements = new ArrayList<Coordonnees>();
+		for(int i = -1; i <= 1; i++)
+			for(int j = -1; j <= 1; j++)
+				if(!(i == 0 && j == 0))
+					deplacements.add(getCoord().ajout(new Coordonnees(i, j)));
+		return deplacements;
 	}
 
 }
