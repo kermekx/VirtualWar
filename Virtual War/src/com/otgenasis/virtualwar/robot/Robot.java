@@ -10,7 +10,7 @@ public abstract class Robot {
 	private int energie;
 	private final int equipe;
 	private Coordonnees coord;
-	private final Vue vue;
+	private Vue vue;
 
 	public Robot(Vue vue, int x, int y, int equipe) {
 		this.vue = vue;
