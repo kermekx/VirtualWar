@@ -20,19 +20,22 @@ public class Base extends Cellule {
 	}
 	
 	@Override
-	public
-	void deplaceSur(Robot r) {
-		robots.add(robot);
+	public void deplaceSur(Robot r) {
+		robots.add(r);
 	}
 
 	@Override
-	void ajoute(int equipe) {
+	public void ajoute(int equipe) {
 		this.equipe = equipe;
 	}
 
 	@Override
 	public void videCase(Robot r) {
-		robots.remove(robot);
+		robots.remove(r);
+	}
+
+	public List<Robot> getUnites() {
+		return robots;
 	}
 
 }

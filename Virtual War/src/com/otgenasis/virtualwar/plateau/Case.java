@@ -9,13 +9,12 @@ public class Case extends Cellule {
 	}
 
 	@Override
-	public
-	void deplaceSur(Robot r) {
+	public void deplaceSur(Robot r) {
 		robot = r;
 	}
 
 	@Override
-	void ajoute(int equipe) {
+	public void ajoute(int equipe) {
 		// TODO Auto-generated method stub
 		
 	}

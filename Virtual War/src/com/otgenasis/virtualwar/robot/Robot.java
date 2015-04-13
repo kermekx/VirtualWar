@@ -10,7 +10,7 @@ public abstract class Robot {
 	private int energie;
 	private final int equipe;
 	private Coordonnees coord;
-	private Vue vue;
+	protected Vue vue;
 
 	public Robot(Vue vue, int x, int y, int equipe) {
 		this.vue = vue;
@@ -18,7 +18,7 @@ public abstract class Robot {
 		this.equipe = equipe;
 	}
 	public boolean estSurBase() {
-		return coord.equals(vue.getBase(equipe));
+		return coord.equals(vue.getBase(equipe).getCoordonnees());
 	}
 
 	public int getEnergie() {
@@ -53,7 +53,7 @@ public abstract class Robot {
 	@Override
 	public String toString() {
 		return "Robot [energie=" + energie + ", equipe=" + equipe + ", coord="
-				+ coord + "]";
+				+ coord + "]\n";
 	}
 	
 	public void subitTir() {

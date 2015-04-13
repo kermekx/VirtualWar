@@ -36,7 +36,7 @@ public abstract class Cellule {
 	}
 	
 	public abstract void deplaceSur(Robot r);
-	abstract void ajoute(int equipe);
+	public abstract void ajoute(int equipe);
 	public abstract void videCase(Robot r);
 	
 }

@@ -42,17 +42,20 @@ public class Vue {
 			}
 			vue += "\n";
 		}
+
+		vue += "\nBase :\n" + getBase(equipe).getUnites().toString() + "\n";
+
 		return vue;
 	}
 
-	public Coordonnees getBase(int equipe) {
+	public Base getBase(int equipe) {
 		Cellule[][] cellules = plateau.getPlateau();
 		for (int i = 0; i < cellules.length; i++) {
 			for (int j = 0; j < cellules[0].length; j++) {
 				if (cellules[i][j] instanceof Base) {
 					Base base = (Base) cellules[i][j];
 					if (base.getEquipe() == equipe)
-						return base.getCoordonnees();
+						return base;
 				}
 			}
 		}
@@ -70,6 +73,18 @@ public class Vue {
 
 	public void move(Coordonnees coord, Coordonnees newCoord, Robot robot) {
 		plateau.getPlateau()[coord.getX()][coord.getY()].videCase(robot);
-		plateau.getPlateau()[newCoord.getX()][newCoord.getY()].deplaceSur(robot);
+		plateau.getPlateau()[newCoord.getX()][newCoord.getY()]
+				.deplaceSur(robot);
+	}
+
+	public boolean canMove(int i, int j) {
+		if (i >= 0 && j >= 0 && i < plateau.getPlateau().length
+				&& j < plateau.getPlateau()[0].length) {
+			if (plateau.getPlateau()[i][j] instanceof Base)
+				return (((Base) plateau.getPlateau()[i][j]).getEquipe() == equipe);
+			else
+				return (plateau.getPlateau()[i][j].getContenu() == null);
+		}
+		return false;
 	}
 }

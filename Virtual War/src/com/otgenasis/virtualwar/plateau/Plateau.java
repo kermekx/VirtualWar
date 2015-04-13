@@ -17,8 +17,8 @@ public class Plateau {
 				plateau[i][j] = new Case(i, j);
 		plateau[0][0] = new Base(0, 0);
 		plateau[9][9] = new Base(0, 0);
-		plateau[0][0].ajoute(1);
-		plateau[9][9].ajoute(2);
+		plateau[0][0].ajoute(0);
+		plateau[9][9].ajoute(1);
 	}
 	
 	public Plateau(int longueur, int largeur){
@@ -28,8 +28,8 @@ public class Plateau {
 				plateau[i][j] = new Case(i, j);
 		plateau[0][0] = new Base(0, 0);
 		plateau[longueur-1][largeur-1] = new Base(0, 0);
-		plateau[0][0].ajoute(1);
-		plateau[longueur-1][largeur-1].ajoute(2);
+		plateau[0][0].ajoute(0);
+		plateau[longueur-1][largeur-1].ajoute(1);
 	}
 	
 	public String toString(){
@@ -50,8 +50,8 @@ public class Plateau {
 	public static void main(String[] args) {
 		Plateau p = new Plateau();
 		Vue vue = new Vue(p, 1);
-		Tireur tireur = new Tireur(vue, 3, 3, 1);
-		p.getPlateau()[3][3].deplaceSur(tireur);
+		Tireur tireur = new Tireur(vue, 1, 1, 1);
+		p.getPlateau()[1][1].deplaceSur(tireur);
 		p.getPlateau()[4][4].deplaceSur(new Tireur(vue, 4, 4, 2));
 		p.getPlateau()[4][3].deplaceSur(new Piegeur(vue, 4, 3, 1));
 		p.getPlateau()[5][4].deplaceSur(new Piegeur(vue, 5, 4, 2));
