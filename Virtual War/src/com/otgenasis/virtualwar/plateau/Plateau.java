@@ -1,5 +1,6 @@
 package com.otgenasis.virtualwar.plateau;
 
+import com.otgenasis.virtualwar.action.Deplacement;
 import com.otgenasis.virtualwar.robot.Char;
 import com.otgenasis.virtualwar.robot.Piegeur;
 import com.otgenasis.virtualwar.robot.Tireur;
@@ -49,12 +50,16 @@ public class Plateau {
 	public static void main(String[] args) {
 		Plateau p = new Plateau();
 		Vue vue = new Vue(p, 1);
-		p.getPlateau()[3][3].deplaceSur(new Tireur(vue, 3, 3, 1));
+		Tireur tireur = new Tireur(vue, 3, 3, 1);
+		p.getPlateau()[3][3].deplaceSur(tireur);
 		p.getPlateau()[4][4].deplaceSur(new Tireur(vue, 4, 4, 2));
 		p.getPlateau()[4][3].deplaceSur(new Piegeur(vue, 4, 3, 1));
 		p.getPlateau()[5][4].deplaceSur(new Piegeur(vue, 5, 4, 2));
 		p.getPlateau()[8][3].deplaceSur(new Char(vue, 8, 3, 1));
 		p.getPlateau()[8][4].deplaceSur(new Char(vue, 9, 4, 2));
+		System.out.println(vue.toString());
+		Deplacement dep = new Deplacement(tireur, tireur.getDeplacements().get(0));
+		dep.agit();
 		System.out.println(vue.toString());
 	}
 }

@@ -18,11 +18,11 @@ public abstract class Action {
 	}
 	
 	public Coordonnees getDirection(){
-		
+		return c;	
 	}
 	
 	public Coordonnees getObjectif(){
-		
+		return c;
 	}
 	
 	abstract void agit();

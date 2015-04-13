@@ -1,11 +1,16 @@
 package com.otgenasis.virtualwar.plateau;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.otgenasis.virtualwar.robot.Robot;
 
 public class Base extends Cellule {
 	
+	private List<Robot> robots;
 	public Base(int x, int y) {
 		super(x, y);
+		robots = new ArrayList<Robot>();
 	}
 
 	private int equipe = 0;
@@ -15,9 +20,9 @@ public class Base extends Cellule {
 	}
 	
 	@Override
+	public
 	void deplaceSur(Robot r) {
-		// TODO Auto-generated method stub
-		
+		robots.add(robot);
 	}
 
 	@Override
@@ -26,9 +31,8 @@ public class Base extends Cellule {
 	}
 
 	@Override
-	void videCase(Robot r) {
-		// TODO Auto-generated method stub
-		
+	public void videCase(Robot r) {
+		robots.remove(robot);
 	}
 
 }

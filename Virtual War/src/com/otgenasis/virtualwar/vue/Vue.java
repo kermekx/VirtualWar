@@ -5,6 +5,7 @@ import com.otgenasis.virtualwar.plateau.Base;
 import com.otgenasis.virtualwar.plateau.Case;
 import com.otgenasis.virtualwar.plateau.Cellule;
 import com.otgenasis.virtualwar.plateau.Plateau;
+import com.otgenasis.virtualwar.robot.Robot;
 
 public class Vue {
 
@@ -56,5 +57,19 @@ public class Vue {
 			}
 		}
 		return null;
+	}
+
+	public Robot getUnite(Coordonnees coord) {
+		Cellule cellule = plateau.getPlateau()[coord.getX()][coord.getY()];
+		if (cellule instanceof Case) {
+			Case vCase = (Case) cellule;
+			return vCase.getContenu();
+		}
+		return null;
+	}
+
+	public void move(Coordonnees coord, Coordonnees newCoord, Robot robot) {
+		plateau.getPlateau()[coord.getX()][coord.getY()].videCase(robot);
+		plateau.getPlateau()[newCoord.getX()][newCoord.getY()].deplaceSur(robot);
 	}
 }

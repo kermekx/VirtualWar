@@ -34,6 +34,7 @@ public abstract class Robot {
 	}
 
 	public void setCoord(Coordonnees coord) {
+		this.vue.move(this.coord, coord, this);
 		this.coord = coord;
 	}
 

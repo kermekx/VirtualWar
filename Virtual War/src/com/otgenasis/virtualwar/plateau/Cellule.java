@@ -35,8 +35,8 @@ public abstract class Cellule {
 		return "Cellule aux coordonnees (" + c.getX() + "," + c.getY() + ")";
 	}
 	
-	abstract void deplaceSur(Robot r);
+	public abstract void deplaceSur(Robot r);
 	abstract void ajoute(int equipe);
-	abstract void videCase(Robot r);
+	public abstract void videCase(Robot r);
 	
 }

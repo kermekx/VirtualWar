@@ -9,6 +9,7 @@ public class Case extends Cellule {
 	}
 
 	@Override
+	public
 	void deplaceSur(Robot r) {
 		robot = r;
 	}
@@ -20,7 +21,7 @@ public class Case extends Cellule {
 	}
 
 	@Override
-	void videCase(Robot r) {
+	public void videCase(Robot r) {
 		if(robot.equals(r))
 			robot = null;
 	}
