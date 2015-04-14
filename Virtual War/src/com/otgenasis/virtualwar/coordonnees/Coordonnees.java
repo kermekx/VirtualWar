@@ -29,7 +29,6 @@ public class Coordonnees {
 			return false;
 		
 		Coordonnees coord = (Coordonnees) obj;
-		System.out.println("" + x + coord.x + y + coord.y);
 		return (x == coord.x && y == coord.y);
 	}
 

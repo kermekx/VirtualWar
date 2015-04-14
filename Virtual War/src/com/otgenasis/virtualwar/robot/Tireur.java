@@ -12,6 +12,7 @@ public class Tireur extends Robot {
 	
 	public Tireur(Vue vue, int x, int y, int equipe) {
 		super(vue, x, y, equipe);
+		maxEnergie = 40;
 		setEnergie(40);
 	}
 

@@ -88,6 +88,10 @@ public class Vue {
 				.deplaceSur(robot);
 	}
 
+	public void kill(Robot robot, Coordonnees coord) {
+		plateau.getPlateau()[coord.getX()][coord.getY()].videCase(robot);
+	}
+
 	public boolean canMove(int i, int j) {
 		if (i >= 0 && j >= 0 && i < plateau.getPlateau().length
 				&& j < plateau.getPlateau()[0].length) {
@@ -122,5 +126,26 @@ public class Vue {
 			}
 		}
 		return null;
+	}
+
+	public boolean hasRobotOutOfBase() {
+		Cellule[][] cellules = plateau.getPlateau();
+		for (int i = 0; i < cellules.length; i++) {
+			for (int j = 0; j < cellules[0].length; j++) {
+				if (cellules[i][j] instanceof Case) {
+					Case cas = (Case) cellules[i][j];
+					if (cas.getContenu() != null
+							&& cas.getContenu().getEquipe() == equipe) {
+							return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	public void heal() {
+		for (Robot robot : (getBase(equipe).getUnites()))
+				robot.setEnergie(robot.getEnergie() + 2);
 	}
 }

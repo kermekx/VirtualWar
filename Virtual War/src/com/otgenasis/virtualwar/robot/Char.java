@@ -12,6 +12,7 @@ public class Char extends Robot {
 	
 	public Char(Vue vue, int x, int y, int equipe) {
 		super(vue, x, y, equipe);
+		maxEnergie = 60;
 		setEnergie(60);
 	}
 

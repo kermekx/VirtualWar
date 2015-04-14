@@ -12,6 +12,7 @@ public class Piegeur extends Robot {
 	
 	public Piegeur(Vue vue, int x, int y, int equipe) {
 		super(vue, x, y, equipe);
+		maxEnergie = 50;
 		setEnergie(50);
 	}
 

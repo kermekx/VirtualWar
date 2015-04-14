@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.otgenasis.virtualwar.action.Action;
+import com.otgenasis.virtualwar.action.Attaque;
 import com.otgenasis.virtualwar.action.Deplacement;
 import com.otgenasis.virtualwar.coordonnees.Coordonnees;
 import com.otgenasis.virtualwar.plateau.Plateau;
@@ -58,10 +59,11 @@ public class VirtualWar {
 
 	@Override
 	public String toString() {
-		return "Joueur : " + joueur + "\n\n" + INFO + "\n\n" + vues.get(joueur);
+		return "Joueur : " + (joueur + 1) + "\n\n" + INFO + "\n\n" + vues.get(joueur);
 	}
 
 	private void turn() {
+		vues.get(joueur).heal();
 		System.out.println(this);
 		getInput();
 		joueur = (joueur + 1) % 2;
@@ -78,7 +80,8 @@ public class VirtualWar {
 					break;
 			}
 			done = action(args);
-		} while (!done);
+			
+		} while (!done /*|| vues.get(joueur).hasRobotOutOfBase()*/);
 	}
 
 	private boolean action(List<String> args) {
@@ -97,9 +100,24 @@ public class VirtualWar {
 								.get(3))));
 				return action.agit();
 			} catch (Exception e) {
+				System.out.println("utilisation de 'move' : move 'numero_robot' 'pos_x' 'pos_y'");
+				return false;
+			}
+		} else if (args.get(0).equalsIgnoreCase("shot")) {
+			try {
+				Robot robot = vues.get(joueur).getRobot(
+						Integer.parseInt(args.get(1)) - 1);
+				action = new Attaque(robot, new Coordonnees(
+						Integer.parseInt(args.get(2)), Integer.parseInt(args
+								.get(3))));
+				return action.agit();
+			} catch (Exception e) {
+				System.out.println("utilisation de 'shot' : shot 'numero_robot' 'pos_x' 'pos_y'");
 				return false;
 			}
 		}
+		
+		System.out.println("Commande '" + args.get(0) + "' introuvable!");
 		
 		return false;
 

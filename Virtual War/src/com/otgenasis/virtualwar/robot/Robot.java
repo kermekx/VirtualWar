@@ -10,6 +10,7 @@ public abstract class Robot {
 	private static int count;
 	
 	private int energie;
+	protected int maxEnergie;
 	private final int equipe;
 	private Coordonnees coord;
 	protected Vue vue;
@@ -29,6 +30,10 @@ public abstract class Robot {
 
 	public void setEnergie(int energie) {
 		this.energie = energie;
+		if (this.energie <= 0) {
+			this.vue.kill(this, this.coord);
+		}
+		this.energie = (this.energie > maxEnergie) ? maxEnergie : energie;
 	}
 
 	public Coordonnees getCoord() {
@@ -36,9 +41,6 @@ public abstract class Robot {
 	}
 
 	public boolean setCoord(Coordonnees coord) {
-		System.out.println(coord);
-		System.out.println(this.getDeplacements());
-		System.out.println(getDeplacements().contains(coord));
 		if (this.getDeplacements().contains(coord)) {
 			this.vue.move(this.coord, coord, this);
 			this.coord = coord;
@@ -62,16 +64,22 @@ public abstract class Robot {
 	@Override
 	public String toString() {
 		count();
-		return "Robot [numero=" + count + ", energie=" + energie + ", equipe=" + equipe + ", coord="
+		return getType() + " [numero=" + count + ", energie=" + energie + ", equipe=" + equipe + ", coord="
 				+ coord + "]\n";
 	}
 	
 	public void subitTir() {
 		energie -= getCoutAction();
+		if (energie <= 0) {
+			this.vue.kill(this, this.coord);
+		}
 	}
 	
 	public  void subitMine() {
 		energie -= getCoutAction();
+		if (energie <= 0) {
+			this.vue.kill(this, this.coord);
+		}
 	}
 
 	public abstract boolean peutTirer();
