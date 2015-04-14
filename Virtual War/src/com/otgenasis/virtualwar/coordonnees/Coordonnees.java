@@ -23,8 +23,14 @@ public class Coordonnees {
 		return "Coordonees [x=" + x + ", y=" + y + "]";
 	}
 	
-	public boolean equals(Coordonnees cord) {
-		return (x == cord.x && y == cord.y);
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Coordonnees))
+			return false;
+		
+		Coordonnees coord = (Coordonnees) obj;
+		System.out.println("" + x + coord.x + y + coord.y);
+		return (x == coord.x && y == coord.y);
 	}
 
 	public Coordonnees ajout(Coordonnees coord) {

@@ -7,6 +7,8 @@ import com.otgenasis.virtualwar.vue.Vue;
 
 public abstract class Robot {
 
+	private static int count;
+	
 	private int energie;
 	private final int equipe;
 	private Coordonnees coord;
@@ -33,9 +35,16 @@ public abstract class Robot {
 		return coord;
 	}
 
-	public void setCoord(Coordonnees coord) {
-		this.vue.move(this.coord, coord, this);
-		this.coord = coord;
+	public boolean setCoord(Coordonnees coord) {
+		System.out.println(coord);
+		System.out.println(this.getDeplacements());
+		System.out.println(getDeplacements().contains(coord));
+		if (this.getDeplacements().contains(coord)) {
+			this.vue.move(this.coord, coord, this);
+			this.coord = coord;
+			return true;
+		}
+		return false;
 	}
 
 	public int getEquipe() {
@@ -52,7 +61,8 @@ public abstract class Robot {
 
 	@Override
 	public String toString() {
-		return "Robot [energie=" + energie + ", equipe=" + equipe + ", coord="
+		count();
+		return "Robot [numero=" + count + ", energie=" + energie + ", equipe=" + equipe + ", coord="
 				+ coord + "]\n";
 	}
 	
@@ -77,5 +87,13 @@ public abstract class Robot {
 	public abstract String getType();
 	
 	public abstract List<Coordonnees> getDeplacements();
+	
+	public static void setCount() {
+		count = 0;
+	}
+	
+	public static void count() {
+		count ++;
+	}
 	
 }

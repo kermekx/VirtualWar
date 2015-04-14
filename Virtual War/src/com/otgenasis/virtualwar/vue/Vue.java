@@ -45,6 +45,17 @@ public class Vue {
 
 		vue += "\nBase :\n" + getBase(equipe).getUnites().toString() + "\n";
 
+		for (int i = 0; i < cellules.length; i++) {
+			for (int j = 0; j < cellules[0].length; j++) {
+				if (cellules[i][j] instanceof Case) {
+					Case cas = (Case) cellules[i][j];
+					if (cas.getContenu() != null
+							&& cas.getContenu().getEquipe() == equipe)
+						vue += cas.getContenu();
+				}
+			}
+		}
+
 		return vue;
 	}
 
@@ -86,5 +97,30 @@ public class Vue {
 				return (plateau.getPlateau()[i][j].getContenu() == null);
 		}
 		return false;
+	}
+
+	public Robot getRobot(int parseInt) {
+		if (getBase(equipe).getUnites().size() > parseInt)
+			return getBase(equipe).getUnites().get(parseInt);
+		else
+			parseInt -= getBase(equipe).getUnites().size();
+
+		Cellule[][] cellules = plateau.getPlateau();
+
+		for (int i = 0; i < cellules.length; i++) {
+			for (int j = 0; j < cellules[0].length; j++) {
+				if (cellules[i][j] instanceof Case) {
+					Case cas = (Case) cellules[i][j];
+					if (cas.getContenu() != null
+							&& cas.getContenu().getEquipe() == equipe) {
+						if (parseInt == 0)
+							return cas.getContenu();
+						else
+							parseInt--;
+					}
+				}
+			}
+		}
+		return null;
 	}
 }

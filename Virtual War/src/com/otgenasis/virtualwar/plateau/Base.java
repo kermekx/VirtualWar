@@ -35,6 +35,7 @@ public class Base extends Cellule {
 	}
 
 	public List<Robot> getUnites() {
+		Robot.setCount();
 		return robots;
 	}
 

@@ -10,12 +10,14 @@ public class Attaque extends Action {
 	}
 
 	@Override
-	void agit() {
+	public boolean agit() {
 		robot.setEnergie(robot.getEnergie() - robot.getCoutTir());
 		if(robot.peutTirer() && robot.getVue().getUnite(c) != null) {
 			Robot enemy = robot.getVue().getUnite(c);
 			enemy.setEnergie(enemy.getEnergie() - enemy.getCoutAction());
+			return true;
 		}
+		return false;
 	}
 
 }

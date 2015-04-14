@@ -25,6 +25,6 @@ public abstract class Action {
 		return c;
 	}
 	
-	abstract void agit();
+	public abstract boolean agit();
 	
 }

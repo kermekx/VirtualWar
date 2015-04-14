@@ -10,9 +10,12 @@ public class Deplacement extends Action {
 	}
 
 	@Override
-	public
-	void agit() {
-		this.robot.setCoord(this.getDirection());
+	public boolean agit() {
+		if (this.robot.setCoord(this.getDirection())) {
+			robot.setEnergie(robot.getEnergie() - robot.getCoutDep());
+			return true;
+		}
+		return false;
 	}
 
 }
