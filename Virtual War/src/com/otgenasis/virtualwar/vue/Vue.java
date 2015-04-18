@@ -34,6 +34,8 @@ public class Vue {
 								.getContenu().getType().substring(0, 1) : cas
 								.getContenu().getType().substring(0, 1)
 								.toLowerCase();
+					else if (cas.getMine() == equipe)
+						vue += "X";
 					else
 						vue += " ";
 				} else
@@ -84,6 +86,14 @@ public class Vue {
 
 	public void move(Coordonnees coord, Coordonnees newCoord, Robot robot) {
 		plateau.getPlateau()[coord.getX()][coord.getY()].videCase(robot);
+		if (plateau.getPlateau()[newCoord.getX()][newCoord.getY()] instanceof Case) {
+			if (((Case) plateau.getPlateau()[newCoord.getX()][newCoord.getY()])
+					.getMine() != -1) {
+				robot.setEnergie(robot.getEnergie() - robot.getCoutAction());
+				((Case) plateau.getPlateau()[newCoord.getX()][newCoord.getY()])
+						.setMine(-1);
+			}
+		}
 		plateau.getPlateau()[newCoord.getX()][newCoord.getY()]
 				.deplaceSur(robot);
 	}
@@ -136,7 +146,7 @@ public class Vue {
 					Case cas = (Case) cellules[i][j];
 					if (cas.getContenu() != null
 							&& cas.getContenu().getEquipe() == equipe) {
-							return true;
+						return true;
 					}
 				}
 			}
@@ -146,6 +156,14 @@ public class Vue {
 
 	public void heal() {
 		for (Robot robot : (getBase(equipe).getUnites()))
-				robot.setEnergie(robot.getEnergie() + 2);
+			robot.setEnergie(robot.getEnergie() + 2);
+	}
+
+	public boolean mine(Coordonnees coordonnees) {
+		if (!canMove(coordonnees.getX(), coordonnees.getY())
+				|| plateau.getPlateau()[coordonnees.getX()][coordonnees.getY()] instanceof Base)
+			return false;
+		((Case) plateau.getPlateau()[coordonnees.getX()][coordonnees.getY()]).setMine(equipe);
+		return true;
 	}
 }

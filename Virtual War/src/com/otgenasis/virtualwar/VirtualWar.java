@@ -59,7 +59,8 @@ public class VirtualWar {
 
 	@Override
 	public String toString() {
-		return "Joueur : " + (joueur + 1) + "\n\n" + INFO + "\n\n" + vues.get(joueur);
+		return "Joueur : " + (joueur + 1) + "\n\n" + INFO + "\n\n"
+				+ vues.get(joueur);
 	}
 
 	private void turn() {
@@ -80,15 +81,15 @@ public class VirtualWar {
 					break;
 			}
 			done = action(args);
-			
-		} while (!done /*|| vues.get(joueur).hasRobotOutOfBase()*/);
+
+		} while (!done /* || vues.get(joueur).hasRobotOutOfBase() */);
 	}
 
 	private boolean action(List<String> args) {
 
 		if (args.size() < 4)
 			return false;
-		
+
 		Action action;
 
 		if (args.get(0).equalsIgnoreCase("move")) {
@@ -100,7 +101,8 @@ public class VirtualWar {
 								.get(3))));
 				return action.agit();
 			} catch (Exception e) {
-				System.out.println("utilisation de 'move' : move 'numero_robot' 'pos_x' 'pos_y'");
+				System.out
+						.println("utilisation de 'move' : move 'numero_robot' 'pos_x' 'pos_y'");
 				return false;
 			}
 		} else if (args.get(0).equalsIgnoreCase("shot")) {
@@ -112,13 +114,28 @@ public class VirtualWar {
 								.get(3))));
 				return action.agit();
 			} catch (Exception e) {
-				System.out.println("utilisation de 'shot' : shot 'numero_robot' 'pos_x' 'pos_y'");
+				System.out
+						.println("utilisation de 'shot' : shot 'numero_robot' 'pos_x' 'pos_y'");
+				return false;
+			}
+		} else if (args.get(0).equalsIgnoreCase("mine")) {
+			try {
+				Robot robot = vues.get(joueur).getRobot(
+						Integer.parseInt(args.get(1)) - 1);
+				if(robot.peutTirer() || robot.estSurBase())
+					return false;
+				return vues.get(joueur).mine(
+						new Coordonnees(Integer.parseInt(args.get(2)), Integer
+								.parseInt(args.get(3))));
+			} catch (Exception e) {
+				System.out
+						.println("utilisation de 'mine' : mine 'numero_robot' 'pos_x' 'pos_y'");
 				return false;
 			}
 		}
-		
+
 		System.out.println("Commande '" + args.get(0) + "' introuvable!");
-		
+
 		return false;
 
 	}
