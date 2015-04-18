@@ -58,8 +58,7 @@ public class Plateau {
 		p.getPlateau()[8][3].deplaceSur(new Char(vue, 8, 3, 1));
 		p.getPlateau()[8][4].deplaceSur(new Char(vue, 9, 4, 2));
 		System.out.println(vue.toString());
-		Deplacement dep = new Deplacement(tireur, tireur.getDeplacements().get(0));
-		dep.agit();
-		System.out.println(vue.toString());
+		System.out.println(tireur.getDeplacements());
+		System.out.println(new Char(vue, 8, 3, 1).getDeplacements());
 	}
 }

@@ -7,9 +7,9 @@ import com.otgenasis.virtualwar.coordonnees.Coordonnees;
 import com.otgenasis.virtualwar.vue.Vue;
 
 public class Piegeur extends Robot {
-	
+
 	public List<Coordonnees> deplacements;
-	
+
 	public Piegeur(Vue vue, int x, int y, int equipe) {
 		super(vue, x, y, equipe);
 		maxEnergie = 50;
@@ -49,9 +49,11 @@ public class Piegeur extends Robot {
 	@Override
 	public List<Coordonnees> getDeplacements() {
 		deplacements = new ArrayList<Coordonnees>();
-		for(int i = -1; i <= 1; i++)
-			for(int j = -1; j <= 1; j++)
-				if(!(i == 0 && j == 0))
+		for (int i = -1; i <= 1; i++)
+			for (int j = -1; j <= 1; j++)
+				if (!(i == 0 && j == 0)
+						&& vue.canMove(getCoord().getX() + i, getCoord().getY()
+								+ j))
 					deplacements.add(getCoord().ajout(new Coordonnees(i, j)));
 		return deplacements;
 	}
