@@ -8,7 +8,10 @@ import com.otgenasis.virtualwar.vue.Vue;
 
 public class Char extends Robot {
 
-	public List<Coordonnees> deplacements;
+	/**
+	 * liste des deplacement possibles
+	 */
+	private List<Coordonnees> deplacements;
 
 	public Char(Vue vue, int x, int y, int equipe) {
 		super(vue, x, y, equipe);

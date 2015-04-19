@@ -5,38 +5,51 @@ import com.otgenasis.virtualwar.robot.Robot;
 
 public abstract class Cellule {
 
-	protected int mine = 0;
-	protected int base = 0;
-	String image;
-	Coordonnees c;
+	/**
+	 * coordonnees de la cellule
+	 */
+	private Coordonnees c;
+
+	/**
+	 * robot sur la case
+	 */
 	protected Robot robot;
-	
-	public Cellule(int x, int y){
+
+	/**
+	 * Créer une cellule en x, y
+	 * 
+	 * @param x
+	 * @param y
+	 */
+	public Cellule(int x, int y) {
 		c = new Coordonnees(x, y);
 	}
-	
-	public int contientMine(){
-		return this.mine > 0 ? 1 : 0;
-	}
-	
-	public int estBase(){
-		return this.base > 0 ? 1 : 0;
-	}
-	
-	public Coordonnees getCoordonnees(){
+
+	/**
+	 * renvoie la position de la cellule
+	 * 
+	 * @return coordonnees de la cellule
+	 */
+	public Coordonnees getCoordonnees() {
 		return this.c;
 	}
-	
-	public Robot getContenu(){
+
+	/**
+	 * renvoie le robot présent sur la cellule
+	 * @return robot
+	 */
+	public Robot getContenu() {
 		return robot;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return "Cellule aux coordonnees (" + c.getX() + "," + c.getY() + ")";
 	}
-	
+
 	public abstract void deplaceSur(Robot r);
+
 	public abstract void ajoute(int equipe);
+
 	public abstract void videCase(Robot r);
-	
+
 }

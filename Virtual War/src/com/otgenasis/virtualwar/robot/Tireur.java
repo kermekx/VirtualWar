@@ -8,7 +8,10 @@ import com.otgenasis.virtualwar.vue.Vue;
 
 public class Tireur extends Robot {
 
-	public List<Coordonnees> deplacements;
+	/**
+	 * liste des deplacement possibles
+	 */
+	private List<Coordonnees> deplacements;
 
 	public Tireur(Vue vue, int x, int y, int equipe) {
 		super(vue, x, y, equipe);

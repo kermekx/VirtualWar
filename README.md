@@ -30,6 +30,7 @@ Poser une mine (piégeur uniquement) :
 BUGS RECONNUS
 =
 - Pas d'obstacles
+- Porté illimité
 
 Bon jeu, l'équipe OT Genasis
 =

@@ -1,16 +1,21 @@
 package com.otgenasis.virtualwar.plateau;
 
-import com.otgenasis.virtualwar.action.Deplacement;
 import com.otgenasis.virtualwar.robot.Char;
 import com.otgenasis.virtualwar.robot.Piegeur;
 import com.otgenasis.virtualwar.robot.Tireur;
 import com.otgenasis.virtualwar.vue.Vue;
 
 public class Plateau {
-	
+
+	/**
+	 * tableau des cellule du plateau
+	 */
 	Cellule[][] plateau;
-	
-	public Plateau(){
+
+	/**
+	 * Créer un plateau de taille 10
+	 */
+	public Plateau() {
 		plateau = new Cellule[10][10];
 		for (int i = 0; i < plateau.length; i++)
 			for (int j = 0; j < plateau[0].length; j++)
@@ -20,19 +25,25 @@ public class Plateau {
 		plateau[0][0].ajoute(0);
 		plateau[9][9].ajoute(1);
 	}
-	
-	public Plateau(int longueur, int largeur){
+
+	/**
+	 * Créer un tableau de taille x, y
+	 * 
+	 * @param longueur
+	 * @param largeur
+	 */
+	public Plateau(int longueur, int largeur) {
 		plateau = new Cellule[longueur][largeur];
 		for (int i = 0; i < plateau.length; i++)
 			for (int j = 0; j < plateau[0].length; j++)
 				plateau[i][j] = new Case(i, j);
 		plateau[0][0] = new Base(0, 0);
-		plateau[longueur-1][largeur-1] = new Base(0, 0);
+		plateau[longueur - 1][largeur - 1] = new Base(0, 0);
 		plateau[0][0].ajoute(0);
-		plateau[longueur-1][largeur-1].ajoute(1);
+		plateau[longueur - 1][largeur - 1].ajoute(1);
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		String res = "";
 		for (int i = 0; i < plateau.length; i++) {
 			for (int j = 0; j < plateau[i].length; j++) {
@@ -42,23 +53,12 @@ public class Plateau {
 		}
 		return res;
 	}
-	
+
+	/**
+	 * renvoie un tableau des cellules
+	 * @return cellule[][]
+	 */
 	public Cellule[][] getPlateau() {
 		return plateau;
-	}
-	
-	public static void main(String[] args) {
-		Plateau p = new Plateau();
-		Vue vue = new Vue(p, 1);
-		Tireur tireur = new Tireur(vue, 1, 1, 1);
-		p.getPlateau()[1][1].deplaceSur(tireur);
-		p.getPlateau()[4][4].deplaceSur(new Tireur(vue, 4, 4, 2));
-		p.getPlateau()[4][3].deplaceSur(new Piegeur(vue, 4, 3, 1));
-		p.getPlateau()[5][4].deplaceSur(new Piegeur(vue, 5, 4, 2));
-		p.getPlateau()[8][3].deplaceSur(new Char(vue, 8, 3, 1));
-		p.getPlateau()[8][4].deplaceSur(new Char(vue, 9, 4, 2));
-		System.out.println(vue.toString());
-		System.out.println(tireur.getDeplacements());
-		System.out.println(new Char(vue, 8, 3, 1).getDeplacements());
 	}
 }

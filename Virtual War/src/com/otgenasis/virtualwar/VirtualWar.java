@@ -17,6 +17,9 @@ import com.otgenasis.virtualwar.vue.Vue;
 
 public class VirtualWar {
 
+	/**
+	 * Instructions
+	 */
 	public static String INFO = "Unites\n"
 			+ "T : tireur alie  | y : tireur enemie\n"
 			+ "P : piegeur alie | p : piegeur enemie\n"
@@ -27,16 +30,36 @@ public class VirtualWar {
 			+ "shot 'numero_robot' 'pos_x' 'pos_y';\n"
 			+ "mine 'numero_robot' 'pos_x' 'pos_y';\n";
 
+	/**
+	 * Vues des deux joueurs
+	 */
 	private List<Vue> vues;
+
+	/**
+	 * Plateau de jeu
+	 */
 	private Plateau plateau;
+
+	/**
+	 * joueur actuel
+	 */
 	private int joueur;
 
+	/**
+	 * lancement du jeu directement
+	 * 
+	 * @param args
+	 *            non utilisés
+	 */
 	public static void main(String[] args) {
 		VirtualWar vw = new VirtualWar();
 		while (!vw.finished())
 			vw.turn();
 	}
 
+	/**
+	 * Création d'une partie 10X10 JvJ
+	 */
 	public VirtualWar() {
 		vues = new ArrayList<Vue>();
 		plateau = new Plateau();
@@ -57,12 +80,18 @@ public class VirtualWar {
 		joueur = 0;
 	}
 
+	/**
+	 * Affiche le rendu du joueur actuel
+	 */
 	@Override
 	public String toString() {
 		return "Joueur : " + (joueur + 1) + "\n\n" + INFO + "\n\n"
 				+ vues.get(joueur);
 	}
 
+	/**
+	 * Tour de l'equipe
+	 */
 	private void turn() {
 		vues.get(joueur).heal();
 		System.out.println(this);
@@ -70,6 +99,9 @@ public class VirtualWar {
 		joueur = (joueur + 1) % 2;
 	}
 
+	/**
+	 * demande unbe commande tant qu'elle n'est pas valide
+	 */
 	private void getInput() {
 		boolean done = false;
 		do {
@@ -85,6 +117,13 @@ public class VirtualWar {
 		} while (!done /* || vues.get(joueur).hasRobotOutOfBase() */);
 	}
 
+	/**
+	 * traduit une commande
+	 * 
+	 * @param args
+	 *            commande numeroRobot x y
+	 * @return si la commande à réussit
+	 */
 	private boolean action(List<String> args) {
 
 		if (args.size() < 4)
@@ -122,7 +161,7 @@ public class VirtualWar {
 			try {
 				Robot robot = vues.get(joueur).getRobot(
 						Integer.parseInt(args.get(1)) - 1);
-				if(robot.peutTirer() || robot.estSurBase())
+				if (robot.peutTirer() || robot.estSurBase())
 					return false;
 				return vues.get(joueur).mine(
 						new Coordonnees(Integer.parseInt(args.get(2)), Integer
@@ -140,6 +179,11 @@ public class VirtualWar {
 
 	}
 
+	/**
+	 * TODO
+	 * demande si le jeu est fini
+	 * @return false
+	 */
 	private boolean finished() {
 		return false;
 	}
