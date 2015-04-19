@@ -1,36 +1,35 @@
 PROJET VIRTUAL WAR 2015
-==============================================================
+=
 Groupe : OT Genasis
 
-- MESSIAEN Kévin - Chef de Projet
-- PERRIER Thomas
-- DUCAUROY Benjamin
-- CATTEAU Maxime
-- ROUSSELLE Alexandre
-- PICAULT Maxime
-==============================================================
+* MESSIAEN KÃ©vin - Chef de Projet
+* PERRIER Thomas
+* DUCAUROY Benjamin
+* CATTEAU Maxime
+* ROUSSELLE Alexandre
+* PICAULT Maxime
+
 COMMENT JOUER ?
+=
+Lancement du jeu :
 
-* Lancement du jeu :
+Une partie est dÃ©marrÃ©e directement
+une fois l'exÃ©cutable lancÃ©.
 
-Une partie est démarrée directement
-une fois l'exécutable lancé.
+Commandes une fois en jeu :
 
-* Commandes une fois en jeu :
-
-Se déplacer :
- - move [n° du robot][coordonnée x][coordonnée y]
+Se dÃ©placer :
+ - move [nÂ° du robot][coordonnÃ©e x][coordonnÃ©e y]
 
 Tirer (tank ou tireur uniquement) :
- - shot [n° du robot devant tirer][coordonnée x][coordonnée y]
+ - shot [nÂ° du robot devant tirer][coordonnÃ©e x][coordonnÃ©e y]
 
-Poser une mine (piégeur uniquement) :
- - mine [n° du piégeur][coordonnée x][coordonnée y]
-==============================================================
+Poser une mine (piÃ©geur uniquement) :
+ - mine [nÂ° du piÃ©geur][coordonnÃ©e x][coordonnÃ©e y]
+
 BUGS RECONNUS
-
+=
 - Pas d'obstacles
 
-==============================================================
-
-Bon jeu, l'équipe OT Genasis
+Bon jeu, l'Ã©quipe OT Genasis
+=
