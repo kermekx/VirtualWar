@@ -218,7 +218,7 @@ public class TestVirtualWar {
 					vw.action(args);
 					//When		
 					args.add(0, "mine");
-					args.add(1, "3");
+					args.add(1, "5");
 					args.add(2, "2");
 					args.add(3, "2");
 					//Then
@@ -238,7 +238,7 @@ public class TestVirtualWar {
 					vw.action(args);
 					//When		
 					args.add(0, "mine");
-					args.add(1, "3");
+					args.add(1, "5");
 					args.add(2, "3");
 					args.add(3, "3");
 					//Then
@@ -260,7 +260,7 @@ public class TestVirtualWar {
 					vw.action(args);
 					//when
 					args.add(0, "mine");
-					args.add(1, "3");
+					args.add(1, "5");
 					args.add(2, "1");
 					args.add(3, "2");
 					//Then
@@ -281,7 +281,7 @@ public class TestVirtualWar {
 					vw.action(args);
 					//when		
 					args.add(0, "mine");
-					args.add(1, "3");
+					args.add(1, "5");
 					args.add(2, "1");
 					args.add(3, "3");
 					//Then
@@ -304,13 +304,13 @@ public class TestVirtualWar {
 					args.add(3, "1");
 					vw.action(args);
 					args.add(0, "move");
-					args.add(1, "1");
+					args.add(1, "5");
 					args.add(2, "1");
 					args.add(3, "1");
 					vw.action(args);
 					//When		
 					args.add(0, "mine");
-					args.add(1, "3");
+					args.add(1, "5");
 					args.add(2, "2");
 					args.add(3, "2");
 					//Then
@@ -329,13 +329,13 @@ public class TestVirtualWar {
 					args.add(3, "1");
 					vw.action(args);
 					args.add(0, "move");
-					args.add(1, "1");
+					args.add(1, "5");
 					args.add(2, "1");
 					args.add(3, "1");
 					vw.action(args);
 					//When		
 					args.add(0, "mine");
-					args.add(1, "3");
+					args.add(1, "5");
 					args.add(2, "3");
 					args.add(3, "3");
 					//Then
@@ -356,13 +356,13 @@ public class TestVirtualWar {
 					args.add(3, "1");
 					vw.action(args);
 					args.add(0, "move");
-					args.add(1, "1");
+					args.add(1, "5");
 					args.add(2, "1");
 					args.add(3, "1");
 					vw.action(args);
 					//when
 					args.add(0, "mine");
-					args.add(1, "3");
+					args.add(1, "5");
 					args.add(2, "1");
 					args.add(3, "2");
 					//Then
@@ -382,13 +382,13 @@ public class TestVirtualWar {
 					args.add(3, "1");
 					vw.action(args);
 					args.add(0, "move");
-					args.add(1, "1");
+					args.add(1, "5");
 					args.add(2, "1");
 					args.add(3, "1");
 					vw.action(args);
 					//when		
 					args.add(0, "mine");
-					args.add(1, "3");
+					args.add(1, "5");
 					args.add(2, "1");
 					args.add(3, "3");
 					//Then
