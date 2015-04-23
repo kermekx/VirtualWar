@@ -49,7 +49,7 @@ public class VirtualWar {
 	 * lancement du jeu directement
 	 * 
 	 * @param args
-	 *            non utilisés
+	 *            non utilisÃ©s
 	 */
 	public static void main(String[] args) {
 		VirtualWar vw = new VirtualWar();
@@ -58,7 +58,7 @@ public class VirtualWar {
 	}
 
 	/**
-	 * Création d'une partie 10X10 JvJ
+	 * CrÃ©ation d'une partie 10X10 JvJ
 	 */
 	public VirtualWar() {
 		vues = new ArrayList<Vue>();
@@ -92,7 +92,7 @@ public class VirtualWar {
 	/**
 	 * Tour de l'equipe
 	 */
-	private void turn() {
+	protected void turn() {
 		vues.get(joueur).heal();
 		System.out.println(this);
 		getInput();
@@ -102,7 +102,7 @@ public class VirtualWar {
 	/**
 	 * demande unbe commande tant qu'elle n'est pas valide
 	 */
-	private void getInput() {
+	protected void getInput() {
 		boolean done = false;
 		do {
 			Scanner scanner = new Scanner(System.in);
@@ -122,9 +122,9 @@ public class VirtualWar {
 	 * 
 	 * @param args
 	 *            commande numeroRobot x y
-	 * @return si la commande à réussit
+	 * @return si la commande Ã  rÃ©ussit
 	 */
-	private boolean action(List<String> args) {
+	protected boolean action(List<String> args) {
 
 		if (args.size() < 4)
 			return false;
