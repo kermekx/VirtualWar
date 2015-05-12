@@ -25,6 +25,7 @@ public class PlayMenu extends JComponent {
 	
 	private int hauteur = 2;
 	private int largeur = 2;
+	private int obstacles;
 
 	public PlayMenu(Main game) {
 		this.game = game;
@@ -74,7 +75,7 @@ public class PlayMenu extends JComponent {
 		
 		boutonSuivant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.setSize(hauteur, largeur);
+				game.setSize(hauteur, largeur, obstacles);
 				game.setScene(new PlayMenu2(game));
 			}
 		});
@@ -86,50 +87,70 @@ public class PlayMenu extends JComponent {
 		int width = bounds.width;
 		int height = bounds.height;
 		
-		JSlider slideH = new JSlider();
-		slideH.setToolTipText("Choisit la hauteur du terrain de jeu");
-		slideH.setMaximum(20);
-		slideH.setMinimum(2);
-		slideH.setValue(5);
-		slideH.setPaintTicks(true);
-		slideH.setPaintLabels(true);
-		slideH.setMinorTickSpacing(5);
-		slideH.setMajorTickSpacing(5);
-		slideH.setForeground(Color.ORANGE);
-		
-		slideH.setBackground(Color.WHITE);
-		slideH.setBounds((int) (width * 0.25), (int) (height * 0.35),
+		JSlider sliderHauteur = new JSlider();
+		sliderHauteur.setToolTipText("Hauteur :");
+		sliderHauteur.setMaximum(20);
+		sliderHauteur.setMinimum(2);
+		sliderHauteur.setValue(5);
+		sliderHauteur.setPaintTicks(true);
+		sliderHauteur.setPaintLabels(true);
+		sliderHauteur.setMinorTickSpacing(5);
+		sliderHauteur.setMajorTickSpacing(5);
+		sliderHauteur.setForeground(Color.ORANGE);	
+		sliderHauteur.setBackground(Color.WHITE);
+		sliderHauteur.setBounds((int) (width * 0.25), (int) (height * 0.3),
 				(int) (width * 0.5), (int) (height * 0.15));
 		
-		slideH.addChangeListener(new ChangeListener() {
+		
+		JSlider sliderLargeur = new JSlider();
+		sliderLargeur.setToolTipText("Largeur :");
+		sliderLargeur.setMaximum(20);
+		sliderLargeur.setMinimum(2);
+		sliderLargeur.setValue(5);
+		sliderLargeur.setPaintTicks(true);
+		sliderLargeur.setPaintLabels(true);
+		sliderLargeur.setMinorTickSpacing(5);
+		sliderLargeur.setMajorTickSpacing(5);
+		sliderLargeur.setForeground(Color.ORANGE);
+		sliderLargeur.setBackground(Color.WHITE);
+		sliderLargeur.setBounds((int) (width * 0.25), (int) (height * 0.5),
+				(int) (width * 0.5), (int) (height * 0.15));
+		
+		JSlider sliderObstacles = new JSlider();
+		sliderObstacles.setToolTipText("Taux d'obstacles :");
+		sliderObstacles.setMaximum(100);
+		sliderObstacles.setMinimum(0);
+		sliderObstacles.setValue(25);
+		sliderObstacles.setPaintTicks(true);
+		sliderObstacles.setPaintLabels(true);
+		sliderObstacles.setMinorTickSpacing(5);
+		sliderObstacles.setMajorTickSpacing(5);
+		sliderObstacles.setForeground(Color.ORANGE);
+		sliderObstacles.setBackground(Color.WHITE);
+		sliderObstacles.setBounds((int) (width * 0.25), (int) (height * 0.7),
+				(int) (width * 0.5), (int) (height * 0.15));
+		
+		sliderHauteur.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				hauteur = ((JSlider) e.getSource()).getValue();
 			}
 		});
 		
-		JSlider slideL = new JSlider();
-		slideL.setToolTipText("Choisit la largeur du terrain de jeux");
-		slideL.setMaximum(20);
-		slideL.setMinimum(2);
-		slideL.setValue(5);
-		slideL.setPaintTicks(true);
-		slideL.setPaintLabels(true);
-		slideL.setMinorTickSpacing(5);
-		slideL.setMajorTickSpacing(5);
-		slideL.setForeground(Color.ORANGE);
-
-		slideL.setBackground(Color.WHITE);
-		slideL.setBounds((int) (width * 0.25), (int) (height * 0.60),
-				(int) (width * 0.5), (int) (height * 0.15));
-		
-		slideL.addChangeListener(new ChangeListener() {
+		sliderLargeur.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				largeur = ((JSlider) e.getSource()).getValue();
 			}
 		});
 		
-		this.add(slideH);
-		this.add(slideL);
+		sliderObstacles.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				obstacles = ((JSlider) e.getSource()).getValue();
+			}
+		});
+		
+		this.add(sliderHauteur);
+		this.add(sliderLargeur);
+		this.add(sliderObstacles);
 	}
 
 }
