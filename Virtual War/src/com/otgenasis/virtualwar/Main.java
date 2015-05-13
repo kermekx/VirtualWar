@@ -31,6 +31,8 @@ public class Main {
 	
 	private List<String> troupes_1, troupes_2;
 	
+	private Jeu jeu;
+	
 	/**
 	 * Vues des deux joueurs
 	 */
@@ -79,14 +81,16 @@ public class Main {
 		troupes_2 = new ArrayList<String>();
 		
 		for(int i = 0; i < 5; i++) {
-			troupes_1.add(joueur1[i]);
-			troupes_2.add(joueur2[i]);
+			if (joueur1[i] != null)
+				troupes_1.add(joueur1[i]);
+			if (joueur2[i] != null)
+				troupes_2.add(joueur2[i]);
 		}
 	}
 
 	public void launch() {
 		vues = new ArrayList<Vue>();
-		plateau = new Plateau(largeur, hauteur);
+		plateau = new Plateau(largeur, hauteur, obstacles);
 		vues.add(new Vue(plateau, 0));
 		vues.add(new Vue(plateau, 1));
 		for (String troupe : troupes_1) {
@@ -105,6 +109,9 @@ public class Main {
 				break;
 			}
 		}
+		
+		int largeur = this.largeur - 1;
+		int hauteur = this.hauteur - 1;
 		
 		for (String troupe : troupes_2) {
 			switch (troupe) {
@@ -125,7 +132,22 @@ public class Main {
 
 		joueur = 0;
 		
-		this.setScene(new Jeu(this));
+		jeu = new Jeu(this);
+		this.setScene(jeu);
+		
+		this.nextTurn();
+	}
+
+	private void nextTurn() {
+		vues.get(joueur).heal();
+		jeu.setVue(vues.get(joueur));
+		SwingUtilities.updateComponentTreeUI(frame);
+		joueur = (joueur + 1) % 2;
+	}
+
+	private boolean isFinished() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

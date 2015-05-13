@@ -23,9 +23,9 @@ public class PlayMenu extends JComponent {
 	
 	private Main game;
 	
-	private int hauteur = 2;
-	private int largeur = 2;
-	private int obstacles;
+	private int hauteur = 5;
+	private int largeur = 5;
+	private int obstacles = 25;
 
 	public PlayMenu(Main game) {
 		this.game = game;

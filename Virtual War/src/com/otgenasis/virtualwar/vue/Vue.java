@@ -235,4 +235,12 @@ public class Vue {
 				.setMine(equipe);
 		return true;
 	}
+	
+	public int getEquipe() {
+		return equipe;
+	}
+
+	public Plateau getPlateau() {
+		return plateau;
+	}
 }

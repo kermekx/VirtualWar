@@ -9,7 +9,12 @@ public class Case extends Cellule {
 	 * numero de l'equipe de la mine présente sur la case (-1 si il n'y en a
 	 * pas)
 	 */
-	protected int mine = 0;
+	protected int mine = -1;
+	
+	/**
+	 * est un obstacle
+	 */
+	protected boolean obstacle = false;
 	
 	/**
 	 * créer une case en x, y
@@ -37,7 +42,17 @@ public class Case extends Cellule {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public void setObstacle(boolean obstacle) {
+		this.obstacle = obstacle;
+	}
 
+	@Override
+	public boolean isObstacle() {
+		return obstacle;
+	}
+	
 	/**
 	 * renvoie l'equipe qui a poser la mine, -1 si il n'y en a pas
 	 * 

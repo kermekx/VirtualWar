@@ -134,8 +134,7 @@ public abstract class Robot {
 	@Override
 	public String toString() {
 		count();
-		return getType() + " [numero=" + count + ", energie=" + energie
-				+ ", equipe=" + equipe + ", coord=" + coord + "]\n";
+		return getType() + "[energie=" + energie + ", " + coord + "]";
 	}
 
 	/**

@@ -52,4 +52,12 @@ public abstract class Cellule {
 
 	public abstract void videCase(Robot r);
 
+	public boolean isObstacle() {
+		return false;
+	}
+
+	public void setObstacle(boolean obstacle) {
+
+	}
+
 }
