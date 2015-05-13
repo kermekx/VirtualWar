@@ -123,7 +123,7 @@ public class PlayMenu2 extends JComponent {
 					}
 				}
 				
-				for (int i = nbr - 1; i < 5; i ++) {
+				for (int i = nbr; i < 5; i ++) {
 					joueur1[i] = null;
 					joueur2[i] = null;
 				}
@@ -136,7 +136,7 @@ public class PlayMenu2 extends JComponent {
 			b.addActionListener(new ActionListener() {		
 				public void actionPerformed(ActionEvent e) {
 					String choix = (String) ((JComboBox<String>) e.getSource()).getSelectedItem();
-					int i = box.indexOf(((JComboBox<String>) e.getSource()).getSelectedItem());
+					int i = box.indexOf(((JComboBox<String>) e.getSource()));
 					if (i % 2 == 0) {
 						joueur1[i / 2] = choix;
 					} else {

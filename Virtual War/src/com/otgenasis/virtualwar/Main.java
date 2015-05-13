@@ -138,7 +138,7 @@ public class Main {
 		this.nextTurn();
 	}
 
-	private void nextTurn() {
+	public void nextTurn() {
 		vues.get(joueur).heal();
 		jeu.setVue(vues.get(joueur));
 		SwingUtilities.updateComponentTreeUI(frame);

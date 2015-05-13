@@ -156,7 +156,8 @@ public class Vue {
 			if (plateau.getPlateau()[i][j] instanceof Base)
 				return (((Base) plateau.getPlateau()[i][j]).getEquipe() == equipe);
 			else
-				return (plateau.getPlateau()[i][j].getContenu() == null);
+				return (plateau.getPlateau()[i][j].getContenu() == null && !plateau
+						.getPlateau()[i][j].isObstacle());
 		}
 		return false;
 	}
@@ -235,7 +236,7 @@ public class Vue {
 				.setMine(equipe);
 		return true;
 	}
-	
+
 	public int getEquipe() {
 		return equipe;
 	}
