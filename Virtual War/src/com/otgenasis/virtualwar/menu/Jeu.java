@@ -24,7 +24,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
@@ -50,6 +52,8 @@ public class Jeu extends JComponent {
 	private Vue vue;
 
 	private JPanel choix;
+	
+	private String message = "";
 
 	public Jeu(Main game) {
 		this.game = game;
@@ -187,6 +191,7 @@ public class Jeu extends JComponent {
 
 						boutonAction.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
+								message = "Aucun attaque recu";
 								Robot robot = (Robot) boxRobots
 										.getSelectedItem();
 								Action action = new Deplacement(robot,
@@ -270,6 +275,7 @@ public class Jeu extends JComponent {
 
 								switch ((String) boxActions.getSelectedItem()) {
 								case "Deplacement":
+									message = "Aucun attaque recu";
 									if ((Coordonnees) boxCoordonnees
 											.getSelectedItem() == null)
 										break;
@@ -288,6 +294,11 @@ public class Jeu extends JComponent {
 											((Robot) boxCibles
 													.getSelectedItem())
 													.getCoord());
+									
+									message = ((Robot) boxCibles
+											.getSelectedItem())
+											+ " a recu des dégats";
+									
 									action.agit();
 									game.nextTurn();
 									choix.removeAll();
@@ -369,6 +380,7 @@ public class Jeu extends JComponent {
 
 								switch ((String) boxActions.getSelectedItem()) {
 								case "Deplacement":
+									message = "Aucun attaque recu";
 									if ((Coordonnees) boxCoordonnees
 											.getSelectedItem() == null)
 										break;
@@ -380,6 +392,8 @@ public class Jeu extends JComponent {
 									choix.removeAll();
 									break;
 								case "Tirer":
+									message = ((Robot) boxCibles
+											.getSelectedItem()) + " a recu des dégats";
 									if ((Robot) boxCibles.getSelectedItem() == null)
 										break;
 
@@ -467,6 +481,7 @@ public class Jeu extends JComponent {
 
 								switch ((String) boxActions.getSelectedItem()) {
 								case "Deplacement":
+									message = "Aucun attaque recu";
 									if ((Coordonnees) boxCoordonnees
 											.getSelectedItem() == null)
 										break;
@@ -478,6 +493,7 @@ public class Jeu extends JComponent {
 									choix.removeAll();
 									break;
 								case "Miner":
+									message = "Aucun attaque recu";
 									if ((Coordonnees) boxMines.getSelectedItem() == null)
 										break;
 
@@ -635,11 +651,15 @@ public class Jeu extends JComponent {
 
 		this.vue = vue;
 
-		game.getFrame().setTitle("Virtual War | Joueur " + vue.getEquipe());
+		game.getFrame().setTitle("Virtual War | Joueur " + (vue.getEquipe() + 1));
 
 		for (JPanel cellule : cellules) {
 			cellule.removeAll();
 		}
+		
+		SwingUtilities.updateComponentTreeUI(this);
+		
+		JOptionPane.showMessageDialog(game.getFrame(), message + "\nEn attente du joueur " + (vue.getEquipe() + 1));
 
 		Cellule[][] cellules = vue.getPlateau().getPlateau();
 		for (int i = 0; i < cellules.length; i++) {
