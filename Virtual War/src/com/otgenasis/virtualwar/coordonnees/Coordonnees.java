@@ -17,7 +17,7 @@ public class Coordonnees {
 	 * @param x
 	 * @param y
 	 */
-	public Coordonnees(int y, int x) {
+	public Coordonnees(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}

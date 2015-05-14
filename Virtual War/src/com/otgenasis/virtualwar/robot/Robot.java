@@ -206,6 +206,10 @@ public abstract class Robot {
 	 */
 	public abstract List<Coordonnees> getDeplacements();
 
+	public abstract List<Robot> getCibles();
+	
+	public abstract List<Coordonnees> getMines();
+	
 	public static void setCount() {
 		count = 0;
 	}

@@ -31,6 +31,7 @@ import javax.swing.border.Border;
 
 import com.otgenasis.virtualwar.Main;
 import com.otgenasis.virtualwar.action.Action;
+import com.otgenasis.virtualwar.action.Attaque;
 import com.otgenasis.virtualwar.action.Deplacement;
 import com.otgenasis.virtualwar.coordonnees.Coordonnees;
 import com.otgenasis.virtualwar.plateau.Base;
@@ -110,30 +111,45 @@ public class Jeu extends JComponent {
 						pos++;
 					}
 
+					Robot[] robots;
+					final JComboBox<Robot> boxRobots;
+					final JComboBox<String> boxActions;
+					String[] actionsDep = { "Deplacement" };
+					String[] actionsDepTir = { "Deplacement", "Tirer" };
+					String[] actionsDepMin = { "Deplacement", "Miner" };
+					final Map<Robot, JComboBox<Coordonnees>> boxsCoordonnees;
+					final JComboBox<Coordonnees> boxCoordonnees;
+					final JComboBox<Robot> boxCibles;
+					final JComboBox<Coordonnees> boxMines;
+					JButton boutonAction;
+					List<Coordonnees> dep;
+					Coordonnees[] positions;
+					List<Robot> cib;
+					Robot[] cibles;
+					List<Coordonnees> min;
+					Coordonnees[] mines;
+					
 					switch (getCellule(pos)) {
 					case "base":
 						choix.removeAll();
 
-						Robot[] robots = new Robot[vue.getBase(vue.getEquipe())
+						robots = new Robot[vue.getBase(vue.getEquipe())
 								.getUnites().size()];
 						for (int i = 0; i < robots.length; i++)
 							robots[i] = vue.getBase(vue.getEquipe())
 									.getUnites().get(i);
-						final JComboBox<Robot> boxRobots = new JComboBox<Robot>(
-								robots);
+						boxRobots = new JComboBox<Robot>(robots);
 						choix.add(boxRobots);
 
-						String[] actions = { "Deplacement" };
-						JComboBox<String> boxActions = new JComboBox<String>(
-								actions);
+						boxActions = new JComboBox<String>(actionsDep);
 
 						choix.add(boxActions);
 
-						final Map<Robot, JComboBox<Coordonnees>> boxCoordonnees = new HashMap<Robot, JComboBox<Coordonnees>>();
+						boxsCoordonnees = new HashMap<Robot, JComboBox<Coordonnees>>();
 
 						for (Robot robot : robots) {
-							List<Coordonnees> dep = robot.getDeplacements();
-							Coordonnees[] positions = new Coordonnees[robot
+							dep = robot.getDeplacements();
+							positions = new Coordonnees[robot
 									.getDeplacements().size()];
 							for (int i = 0; i < positions.length; i++)
 								positions[i] = dep.get(i);
@@ -141,32 +157,32 @@ public class Jeu extends JComponent {
 									positions);
 							boxDeplacements.setVisible(false);
 							choix.add(boxDeplacements);
-							boxCoordonnees.put(robot, boxDeplacements);
+							boxsCoordonnees.put(robot, boxDeplacements);
 						}
 
 						boxRobots.addActionListener(new ActionListener() {
 
 							@Override
 							public void actionPerformed(ActionEvent e) {
-								Robot robot = (Robot) ((JComboBox<Robot>) e
-										.getSource()).getSelectedItem();
+								Robot robot = (Robot) (boxRobots
+										.getSelectedItem());
 
-								Iterator<Robot> it = boxCoordonnees.keySet()
+								Iterator<Robot> it = boxsCoordonnees.keySet()
 										.iterator();
 
 								while (it.hasNext()) {
 									Robot key = it.next();
-									boxCoordonnees.get(key).setVisible(false);
+									boxsCoordonnees.get(key).setVisible(false);
 								}
 
-								boxCoordonnees.get(robot).setVisible(true);
+								boxsCoordonnees.get(robot).setVisible(true);
 							}
 						});
 
-						boxCoordonnees.get(boxRobots.getSelectedItem())
+						boxsCoordonnees.get(boxRobots.getSelectedItem())
 								.setVisible(true);
 
-						JButton boutonAction = new JButton("Action");
+						boutonAction = new JButton("Action");
 						choix.add(boutonAction);
 
 						boutonAction.addActionListener(new ActionListener() {
@@ -174,7 +190,7 @@ public class Jeu extends JComponent {
 								Robot robot = (Robot) boxRobots
 										.getSelectedItem();
 								Action action = new Deplacement(robot,
-										(Coordonnees) boxCoordonnees.get(
+										(Coordonnees) boxsCoordonnees.get(
 												boxRobots.getSelectedItem())
 												.getSelectedItem());
 								action.agit();
@@ -184,6 +200,300 @@ public class Jeu extends JComponent {
 						});
 
 						break;
+
+					case "char":
+
+						choix.removeAll();
+
+						robots = new Robot[1];
+						robots[0] = vue.getPlateau().getPlateau()[pos
+								% game.getSize().x][pos / game.getSize().x]
+								.getContenu();
+
+						boxRobots = new JComboBox<Robot>(robots);
+						choix.add(boxRobots);
+
+						boxActions = new JComboBox<String>(actionsDepTir);
+
+						choix.add(boxActions);
+
+						dep = robots[0].getDeplacements();
+						positions = new Coordonnees[dep.size()];
+						for (int i = 0; i < positions.length; i++)
+							positions[i] = dep.get(i);
+						boxCoordonnees = new JComboBox<Coordonnees>(positions);
+						boxCoordonnees.setVisible(false);
+						choix.add(boxCoordonnees);
+
+						cib = robots[0].getCibles();
+						cibles = new Robot[cib.size()];
+						for (int i = 0; i < cibles.length; i++)
+							cibles[i] = cib.get(i);
+						boxCibles = new JComboBox<Robot>(cibles);
+						boxCibles.setVisible(false);
+						choix.add(boxCibles);
+
+						boxActions.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								String action = (String) (boxActions
+										.getSelectedItem());
+
+								switch (action) {
+								case "Deplacement":
+									boxCoordonnees.setVisible(true);
+									boxCibles.setVisible(false);
+									break;
+								case "Tirer":
+									boxCoordonnees.setVisible(false);
+									boxCibles.setVisible(true);
+									break;
+								default:
+									boxCoordonnees.setVisible(false);
+									boxCibles.setVisible(false);
+									break;
+								}
+							}
+						});
+
+						boxCoordonnees.setVisible(true);
+
+						boutonAction = new JButton("Action");
+						choix.add(boutonAction);
+
+						boutonAction.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								Robot robot = (Robot) boxRobots
+										.getSelectedItem();
+								Action action;
+
+								switch ((String) boxActions.getSelectedItem()) {
+								case "Deplacement":
+									if ((Coordonnees) boxCoordonnees
+											.getSelectedItem() == null)
+										break;
+									action = new Deplacement(robot,
+											(Coordonnees) boxCoordonnees
+													.getSelectedItem());
+									action.agit();
+									game.nextTurn();
+									choix.removeAll();
+									break;
+								case "Tirer":
+									if ((Robot) boxCibles.getSelectedItem() == null)
+										break;
+
+									action = new Attaque(robot,
+											((Robot) boxCibles
+													.getSelectedItem())
+													.getCoord());
+									action.agit();
+									game.nextTurn();
+									choix.removeAll();
+									break;
+								default:
+									break;
+								}
+							}
+						});
+
+						break;
+						
+					case "tireur":
+
+						choix.removeAll();
+
+						robots = new Robot[1];
+						robots[0] = vue.getPlateau().getPlateau()[pos
+								% game.getSize().x][pos / game.getSize().x]
+								.getContenu();
+
+						boxRobots = new JComboBox<Robot>(robots);
+						choix.add(boxRobots);
+
+						boxActions = new JComboBox<String>(actionsDepTir);
+
+						choix.add(boxActions);
+
+						dep = robots[0].getDeplacements();
+						positions = new Coordonnees[dep.size()];
+						for (int i = 0; i < positions.length; i++)
+							positions[i] = dep.get(i);
+						boxCoordonnees = new JComboBox<Coordonnees>(positions);
+						boxCoordonnees.setVisible(false);
+						choix.add(boxCoordonnees);
+
+						cib = robots[0].getCibles();
+						cibles = new Robot[cib.size()];
+						for (int i = 0; i < cibles.length; i++)
+							cibles[i] = cib.get(i);
+						boxCibles = new JComboBox<Robot>(cibles);
+						boxCibles.setVisible(false);
+						choix.add(boxCibles);
+
+						boxActions.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								String action = (String) (boxActions
+										.getSelectedItem());
+
+								switch (action) {
+								case "Deplacement":
+									boxCoordonnees.setVisible(true);
+									boxCibles.setVisible(false);
+									break;
+								case "Tirer":
+									boxCoordonnees.setVisible(false);
+									boxCibles.setVisible(true);
+									break;
+								default:
+									boxCoordonnees.setVisible(false);
+									boxCibles.setVisible(false);
+									break;
+								}
+							}
+						});
+
+						boxCoordonnees.setVisible(true);
+
+						boutonAction = new JButton("Action");
+						choix.add(boutonAction);
+
+						boutonAction.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								Robot robot = (Robot) boxRobots
+										.getSelectedItem();
+								Action action;
+
+								switch ((String) boxActions.getSelectedItem()) {
+								case "Deplacement":
+									if ((Coordonnees) boxCoordonnees
+											.getSelectedItem() == null)
+										break;
+									action = new Deplacement(robot,
+											(Coordonnees) boxCoordonnees
+													.getSelectedItem());
+									action.agit();
+									game.nextTurn();
+									choix.removeAll();
+									break;
+								case "Tirer":
+									if ((Robot) boxCibles.getSelectedItem() == null)
+										break;
+
+									action = new Attaque(robot,
+											((Robot) boxCibles
+													.getSelectedItem())
+													.getCoord());
+									action.agit();
+									game.nextTurn();
+									choix.removeAll();
+									break;
+								default:
+									break;
+								}
+							}
+						});
+
+						break;
+					case "piegeur":
+
+						choix.removeAll();
+
+						robots = new Robot[1];
+						robots[0] = vue.getPlateau().getPlateau()[pos
+								% game.getSize().x][pos / game.getSize().x]
+								.getContenu();
+
+						boxRobots = new JComboBox<Robot>(robots);
+						choix.add(boxRobots);
+
+						boxActions = new JComboBox<String>(actionsDepMin);
+
+						choix.add(boxActions);
+
+						dep = robots[0].getDeplacements();
+						positions = new Coordonnees[dep.size()];
+						for (int i = 0; i < positions.length; i++)
+							positions[i] = dep.get(i);
+						boxCoordonnees = new JComboBox<Coordonnees>(positions);
+						boxCoordonnees.setVisible(false);
+						choix.add(boxCoordonnees);
+
+						min = robots[0].getMines();
+						mines = new Coordonnees[min.size()];
+						for (int i = 0; i < mines.length; i++)
+							mines[i] = min.get(i);
+						boxMines = new JComboBox<Coordonnees>(mines);
+						boxMines.setVisible(false);
+						choix.add(boxMines);
+
+						boxActions.addActionListener(new ActionListener() {
+
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								String action = (String) (boxActions
+										.getSelectedItem());
+
+								switch (action) {
+								case "Deplacement":
+									boxCoordonnees.setVisible(true);
+									boxMines.setVisible(false);
+									break;
+								case "Miner":
+									boxCoordonnees.setVisible(false);
+									boxMines.setVisible(true);
+									break;
+								default:
+									boxCoordonnees.setVisible(false);
+									boxMines.setVisible(false);
+									break;
+								}
+							}
+						});
+
+						boxCoordonnees.setVisible(true);
+
+						boutonAction = new JButton("Action");
+						choix.add(boutonAction);
+
+						boutonAction.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								Robot robot = (Robot) boxRobots
+										.getSelectedItem();
+								Action action;
+
+								switch ((String) boxActions.getSelectedItem()) {
+								case "Deplacement":
+									if ((Coordonnees) boxCoordonnees
+											.getSelectedItem() == null)
+										break;
+									action = new Deplacement(robot,
+											(Coordonnees) boxCoordonnees
+													.getSelectedItem());
+									action.agit();
+									game.nextTurn();
+									choix.removeAll();
+									break;
+								case "Miner":
+									if ((Coordonnees) boxMines.getSelectedItem() == null)
+										break;
+
+									vue.mine((Coordonnees) boxMines.getSelectedItem());
+									robot.setEnergie(robot.getEnergie() - robot.getCoutMine());
+									game.nextTurn();
+									choix.removeAll();
+									break;
+								default:
+									break;
+								}
+							}
+						});
+
+						break;
+						
 					default:
 						break;
 					}

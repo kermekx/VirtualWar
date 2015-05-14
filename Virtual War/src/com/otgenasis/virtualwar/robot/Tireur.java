@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.otgenasis.virtualwar.coordonnees.Coordonnees;
+import com.otgenasis.virtualwar.plateau.Cellule;
 import com.otgenasis.virtualwar.vue.Vue;
 
 public class Tireur extends Robot {
@@ -57,8 +58,32 @@ public class Tireur extends Robot {
 				if (!(i == 0 && j == 0)
 						&& vue.canMove(getCoord().getX() + i, getCoord().getY()
 								+ j))
-					deplacements.add(getCoord().ajout(new Coordonnees(i, j)));
+					deplacements.add(new Coordonnees(getCoord().getX() + i,
+							getCoord().getY() + j));
 		return deplacements;
+	}
+
+	@Override
+	public List<Robot> getCibles() {
+		Cellule[][] cellules = vue.getPlateau().getPlateau();
+
+		List<Robot> cibles = new ArrayList<Robot>();
+
+		for (Cellule[] cellulesX : cellules) {
+			for (Cellule cellule : cellulesX) {
+				Robot r = cellule.getContenu();
+				if (r != null && r.getEquipe() != this.getEquipe()) {
+					int difX = Math.abs(r.getCoord().getX()
+							- this.getCoord().getX());
+					int difY = Math.abs(r.getCoord().getY()
+							- this.getCoord().getY());
+					if ((difX == 0 || difY == 0) && difX <= 3 && difY <= 3)
+						cibles.add(r);
+				}
+			}
+		}
+
+		return cibles;
 	}
 
 }

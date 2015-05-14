@@ -12,6 +12,7 @@ public class Piegeur extends Robot {
 	 * liste des deplacement possibles
 	 */
 	private List<Coordonnees> deplacements;
+	private List<Coordonnees> mines;
 
 	public Piegeur(Vue vue, int x, int y, int equipe) {
 		super(vue, x, y, equipe);
@@ -57,8 +58,31 @@ public class Piegeur extends Robot {
 				if (!(i == 0 && j == 0)
 						&& vue.canMove(getCoord().getX() + i, getCoord().getY()
 								+ j))
-					deplacements.add(getCoord().ajout(new Coordonnees(i, j)));
+					deplacements.add(new Coordonnees(getCoord().getX() + i,
+							getCoord().getY() + j));
 		return deplacements;
+	}
+
+	@Override
+	public List<Robot> getCibles() {
+		return null;
+	}
+
+	@Override
+	public List<Coordonnees> getMines() {
+		mines = new ArrayList<Coordonnees>();
+		Coordonnees base = vue.getBase(this.getEquipe()).getCoordonnees();
+
+		for (int i = -1; i <= 1; i++)
+			for (int j = -1; j <= 1; j++)
+				if (!(i == 0 && j == 0)
+						&& vue.canMove(getCoord().getX() + i, getCoord().getY()
+								+ j)
+						&& (base.getX() != getCoord().getX() + i || base.getY() != getCoord()
+								.getY() + j))
+					mines.add(new Coordonnees(getCoord().getX() + i, getCoord()
+							.getY() + j));
+		return mines;
 	}
 
 }
