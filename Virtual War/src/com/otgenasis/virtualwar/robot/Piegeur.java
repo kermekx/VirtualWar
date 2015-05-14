@@ -69,8 +69,12 @@ public class Piegeur extends Robot {
 	}
 
 	@Override
-	public List<Coordonnees> getMines() {
+	public List<Coordonnees> getPosMines() {
 		mines = new ArrayList<Coordonnees>();
+		
+		if (nbrMines <= 0)
+			return mines;
+		
 		Coordonnees base = vue.getBase(this.getEquipe()).getCoordonnees();
 
 		for (int i = -1; i <= 1; i++)
@@ -83,6 +87,12 @@ public class Piegeur extends Robot {
 					mines.add(new Coordonnees(getCoord().getX() + i, getCoord()
 							.getY() + j));
 		return mines;
+	}
+	
+	@Override
+	public String toString() {
+		count();
+		return getType() + "[energie=" + energie + ", mine=" + nbrMines + ", " + coord + "]";
 	}
 
 }

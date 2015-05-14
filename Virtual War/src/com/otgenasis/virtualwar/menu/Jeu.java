@@ -422,7 +422,7 @@ public class Jeu extends JComponent {
 						boxCoordonnees.setVisible(false);
 						choix.add(boxCoordonnees);
 
-						min = robots[0].getMines();
+						min = robots[0].getPosMines();
 						mines = new Coordonnees[min.size()];
 						for (int i = 0; i < mines.length; i++)
 							mines[i] = min.get(i);
@@ -483,6 +483,7 @@ public class Jeu extends JComponent {
 
 									vue.mine((Coordonnees) boxMines.getSelectedItem());
 									robot.setEnergie(robot.getEnergie() - robot.getCoutMine());
+									robot.setMines(robot.getMines() - 1);
 									game.nextTurn();
 									choix.removeAll();
 									break;

@@ -218,8 +218,10 @@ public class Vue {
 	 * rajoute 2 energies aux robot hors de la base
 	 */
 	public void heal() {
-		for (Robot robot : (getBase(equipe).getUnites()))
+		for (Robot robot : (getBase(equipe).getUnites())) {
 			robot.setEnergie(robot.getEnergie() + 2);
+			robot.setMines(10);
+		}
 	}
 
 	/**

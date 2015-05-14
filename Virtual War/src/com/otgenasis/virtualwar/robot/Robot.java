@@ -15,7 +15,7 @@ public abstract class Robot {
 	/**
 	 * eznergie du robot
 	 */
-	private int energie;
+	protected int energie;
 	/**
 	 * energie max du robot
 	 */
@@ -27,12 +27,13 @@ public abstract class Robot {
 	/**
 	 * position du robot
 	 */
-	private Coordonnees coord;
+	protected Coordonnees coord;
 	/**
 	 * vue de l'equipe du robot
 	 */
 	protected Vue vue;
 
+	protected int nbrMines = 10;
 	/**
 	 * créer un robot en x, y de l'equipe i avec la vue corespondante
 	 * 
@@ -208,7 +209,7 @@ public abstract class Robot {
 
 	public abstract List<Robot> getCibles();
 	
-	public abstract List<Coordonnees> getMines();
+	public abstract List<Coordonnees> getPosMines();
 	
 	public static void setCount() {
 		count = 0;
@@ -216,6 +217,14 @@ public abstract class Robot {
 
 	public static void count() {
 		count++;
+	}
+
+	public void setMines(int i) {
+		nbrMines = i;
+	}
+	
+	public int getMines() {
+		return nbrMines;
 	}
 
 }
