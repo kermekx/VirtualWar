@@ -86,4 +86,10 @@ public class Tireur extends Robot {
 		return cibles;
 	}
 
+	@Override
+	public List<Coordonnees> getPosMines() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

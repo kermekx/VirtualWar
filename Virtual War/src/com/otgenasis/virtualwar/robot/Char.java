@@ -52,36 +52,55 @@ public class Char extends Robot {
 
 	@Override
 	public List<Coordonnees> getDeplacements() {
+		List<Coordonnees> dep = new ArrayList<Coordonnees>();
 		deplacements = new ArrayList<Coordonnees>();
-		for (int i = -2; i <= 2; i++)
-			for (int j = -2; j <= 2; j++)
+		for (int i = -1; i <= 1; i++)
+			for (int j = -1; j <= 1; j++)
 				if (((i != 0 && j == 0) || (i == 0 && j != 0))
 						&& vue.canMove(getCoord().getX() + i, getCoord().getY()
 								+ j))
-					deplacements.add(new Coordonnees(getCoord().getX() + i,
-							getCoord().getY() + j));
+					dep.add(new Coordonnees(i, j));
+
+		for (Coordonnees c : dep) {
+			deplacements.add(new Coordonnees(getCoord().getX() + c.getX(),
+					getCoord().getY() + c.getY()));
+
+			if (vue.canMove(getCoord().getX() + c.getX() * 2, getCoord().getY()
+					+ c.getY() * 2))
+				deplacements.add(new Coordonnees(getCoord().getX() + c.getX()
+						* 2, getCoord().getY() + c.getY() * 2));
+		}
+
 		return deplacements;
 	}
 
 	@Override
 	public List<Robot> getCibles() {
 		Cellule[][] cellules = vue.getPlateau().getPlateau();
-		
+
 		List<Robot> cibles = new ArrayList<Robot>();
-		
+
 		for (Cellule[] cellulesX : cellules) {
 			for (Cellule cellule : cellulesX) {
 				Robot r = cellule.getContenu();
 				if (r != null && r.getEquipe() != this.getEquipe()) {
-					int difX = Math.abs(r.getCoord().getX() - this.getCoord().getX());
-					int difY = Math.abs(r.getCoord().getY() - this.getCoord().getY());
+					int difX = Math.abs(r.getCoord().getX()
+							- this.getCoord().getX());
+					int difY = Math.abs(r.getCoord().getY()
+							- this.getCoord().getY());
 					if ((difX == 0 || difY == 0) && difX <= 10 && difY <= 10)
 						cibles.add(r);
 				}
 			}
 		}
-		
+
 		return cibles;
+	}
+
+	@Override
+	public List<Coordonnees> getPosMines() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
