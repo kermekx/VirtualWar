@@ -31,6 +31,8 @@ public class Main {
 	
 	private List<String> troupes_1, troupes_2;
 	
+	private String team1, team2, flag1, flag2;
+	
 	private Jeu jeu;
 	
 	/**
@@ -86,6 +88,20 @@ public class Main {
 			if (joueur2[i] != null)
 				troupes_2.add(joueur2[i]);
 		}
+	}
+	
+	public void setTeamName(String teamName1, String teamName2) {
+		team1 = teamName1;
+		team2 = teamName2;
+	}
+	
+	public void setTeamFlag(String player1Flag, String player2Flag) {
+		flag1 = player1Flag;
+		flag2 = player2Flag;
+	}
+	
+	public String getTeamName(int equipe) {
+		return (equipe == 0) ? team1 : team2;
 	}
 
 	public void launch() {
@@ -149,5 +165,4 @@ public class Main {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

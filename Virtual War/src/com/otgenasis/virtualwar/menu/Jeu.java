@@ -617,20 +617,6 @@ public class Jeu extends JComponent {
 		cellules.get(x + y * game.getSize().x).removeAll();
 		cellules.get(x + y * game.getSize().x).add(
 				new JLabel(equivalents.get(type)), BorderLayout.CENTER);
-		System.out.println(type + " " + x + " " + y);
-	}
-
-	private String getCellule(int x, int y) {
-		Iterator<String> it = equivalents.keySet().iterator();
-		if (cellules.get(x + y * game.getSize().x).getComponentCount() == 0)
-			return "";
-		while (it.hasNext()) {
-			String str = it.next();
-			if (equivalents.get(str) == (((JLabel) cellules.get(
-					x + y * game.getSize().x).getComponent(0)).getIcon()))
-				return str;
-		}
-		return "";
 	}
 
 	private String getCellule(int pos) {
@@ -650,7 +636,7 @@ public class Jeu extends JComponent {
 
 		this.vue = vue;
 
-		game.getFrame().setTitle("Virtual War | Joueur " + (vue.getEquipe() + 1));
+		game.getFrame().setTitle("Virtual War | " + game.getTeamName(vue.getEquipe()));
 
 		for (JPanel cellule : cellules) {
 			cellule.removeAll();
@@ -658,7 +644,7 @@ public class Jeu extends JComponent {
 		
 		SwingUtilities.updateComponentTreeUI(this);
 		
-		JOptionPane.showMessageDialog(game.getFrame(), message + "\nEn attente du joueur " + (vue.getEquipe() + 1));
+		JOptionPane.showMessageDialog(game.getFrame(), message + "\nEn attente de " + game.getTeamName(vue.getEquipe()));
 
 		Cellule[][] cellules = vue.getPlateau().getPlateau();
 		for (int i = 0; i < cellules.length; i++) {
