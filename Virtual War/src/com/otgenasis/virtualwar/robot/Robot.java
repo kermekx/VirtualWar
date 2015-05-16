@@ -8,11 +8,6 @@ import com.otgenasis.virtualwar.vue.Vue;
 public abstract class Robot {
 
 	/**
-	 * incremention de l'id des robots
-	 */
-	private static int count;
-
-	/**
 	 * eznergie du robot
 	 */
 	protected int energie;
@@ -134,7 +129,6 @@ public abstract class Robot {
 
 	@Override
 	public String toString() {
-		count();
 		return getType() + "[energie=" + energie + ", " + coord + "]";
 	}
 
@@ -210,14 +204,6 @@ public abstract class Robot {
 	public abstract List<Robot> getCibles();
 	
 	public abstract List<Coordonnees> getPosMines();
-	
-	public static void setCount() {
-		count = 0;
-	}
-
-	public static void count() {
-		count++;
-	}
 
 	public void setMines(int i) {
 		nbrMines = i;

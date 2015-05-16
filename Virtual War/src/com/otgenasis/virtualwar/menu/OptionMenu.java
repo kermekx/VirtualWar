@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import com.otgenasis.virtualwar.Main;
+import com.otgenasis.virtualwar.frame.GameFrame;
 
 public class OptionMenu extends JComponent {
 
@@ -70,5 +71,33 @@ public class OptionMenu extends JComponent {
 				game.setScene(new MainMenu(game));
 			}
 		});
+		
+		if (((GameFrame) game.getFrame()).isFullScreen()) {
+			JButton fenetre = new JButton("Fenetre");
+			fenetre.setBounds((int) (width * 0.25), (int) (height * 0.475),
+					(int) (width * 0.5), (int) (height * 0.05));
+			
+			fenetre.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					((GameFrame) game.getFrame()).switchScreen();
+					game.setScene(new OptionMenu(game));
+				}
+			});
+			
+			this.add(fenetre);
+		} else {
+			JButton pleinEcran = new JButton("Plein Ecran");
+			pleinEcran.setBounds((int) (width * 0.25), (int) (height * 0.475),
+					(int) (width * 0.5), (int) (height * 0.05));
+			
+			pleinEcran.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					((GameFrame) game.getFrame()).switchScreen();
+					game.setScene(new OptionMenu(game));
+				}
+			});
+			
+			this.add(pleinEcran);
+		}
 	}
 }

@@ -91,7 +91,6 @@ public class Piegeur extends Robot {
 	
 	@Override
 	public String toString() {
-		count();
 		return getType() + "[energie=" + energie + ", mine=" + nbrMines + ", " + coord + "]";
 	}
 

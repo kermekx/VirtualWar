@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 
 import com.otgenasis.virtualwar.Main;
 
-public class PlayMenu2 extends JComponent {
+public class RobotMenu extends JComponent {
 
 	private Main game;
 	
@@ -28,7 +28,7 @@ public class PlayMenu2 extends JComponent {
 	private String[] joueur2 = new String[5];
 	
 
-	public PlayMenu2(Main game) {
+	public RobotMenu(Main game) {
 		this.game = game;
 
 		this.setBackground(Color.WHITE);

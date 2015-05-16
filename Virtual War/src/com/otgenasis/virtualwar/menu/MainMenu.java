@@ -79,7 +79,7 @@ public class MainMenu extends JComponent {
 		
 		boutonJouer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.setScene(new PlayMenu(game));
+				game.setScene(new PlateauMenu(game));
 			}
 		});
 		
