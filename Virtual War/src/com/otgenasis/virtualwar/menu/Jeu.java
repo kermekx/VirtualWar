@@ -2,6 +2,8 @@ package com.otgenasis.virtualwar.menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -12,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,6 +31,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
@@ -51,7 +56,7 @@ public class Jeu extends JComponent {
 	private Vue vue;
 
 	private JPanel choix;
-	
+
 	private String message = "";
 
 	public Jeu(Main game) {
@@ -60,6 +65,7 @@ public class Jeu extends JComponent {
 		this.setBackground(Color.WHITE);
 		this.addGrid();
 		this.loadImages();
+		this.addVersus();
 	}
 
 	private void addGrid() {
@@ -131,7 +137,7 @@ public class Jeu extends JComponent {
 					Robot[] cibles;
 					List<Coordonnees> min;
 					Coordonnees[] mines;
-					
+
 					switch (getCellule(pos)) {
 					case "base":
 						choix.removeAll();
@@ -152,8 +158,8 @@ public class Jeu extends JComponent {
 
 						for (Robot robot : robots) {
 							dep = robot.getDeplacements();
-							positions = new Coordonnees[robot
-									.getDeplacements().size()];
+							positions = new Coordonnees[robot.getDeplacements()
+									.size()];
 							for (int i = 0; i < positions.length; i++)
 								positions[i] = dep.get(i);
 							JComboBox<Coordonnees> boxDeplacements = new JComboBox<Coordonnees>(
@@ -293,11 +299,11 @@ public class Jeu extends JComponent {
 											((Robot) boxCibles
 													.getSelectedItem())
 													.getCoord());
-									
+
 									message = ((Robot) boxCibles
 											.getSelectedItem())
 											+ " a recu des dégats";
-									
+
 									action.agit();
 									game.nextTurn();
 									choix.removeAll();
@@ -309,7 +315,7 @@ public class Jeu extends JComponent {
 						});
 
 						break;
-						
+
 					case "tireur":
 
 						choix.removeAll();
@@ -392,7 +398,8 @@ public class Jeu extends JComponent {
 									break;
 								case "Tirer":
 									message = ((Robot) boxCibles
-											.getSelectedItem()) + " a recu des dégats";
+											.getSelectedItem())
+											+ " a recu des dégats";
 									if ((Robot) boxCibles.getSelectedItem() == null)
 										break;
 
@@ -493,11 +500,14 @@ public class Jeu extends JComponent {
 									break;
 								case "Miner":
 									message = "Aucun attaque recu";
-									if ((Coordonnees) boxMines.getSelectedItem() == null)
+									if ((Coordonnees) boxMines
+											.getSelectedItem() == null)
 										break;
 
-									vue.mine((Coordonnees) boxMines.getSelectedItem());
-									robot.setEnergie(robot.getEnergie() - robot.getCoutMine());
+									vue.mine((Coordonnees) boxMines
+											.getSelectedItem());
+									robot.setEnergie(robot.getEnergie()
+											- robot.getCoutMine());
 									robot.setMines(robot.getMines() - 1);
 									game.nextTurn();
 									choix.removeAll();
@@ -509,7 +519,7 @@ public class Jeu extends JComponent {
 						});
 
 						break;
-						
+
 					default:
 						break;
 					}
@@ -524,13 +534,12 @@ public class Jeu extends JComponent {
 		this.add(grille);
 
 		choix = new JPanel();
-		choix.setBounds(height, 0, width - height, height);
+		choix.setBounds(height, 0, width - height, width - height);
 		this.add(choix);
 	}
 
 	private void loadImages() {
 		Rectangle bounds = game.getFrame().getBounds();
-		int width = bounds.width;
 		int height = bounds.height;
 
 		equivalents = new HashMap<String, Icon>();
@@ -602,6 +611,82 @@ public class Jeu extends JComponent {
 		equivalents.put("mine", scaledMine);
 	}
 
+	private void addVersus() {
+		Rectangle bounds = game.getFrame().getBounds();
+		int width = bounds.width;
+		int height = bounds.height;
+		int boxWidth = width - height;
+		int boxHeight = height - boxWidth;
+
+		Border blackline = BorderFactory.createLineBorder(Color.black, 1);
+
+		JPanel drapeau1 = new JPanel();
+		drapeau1.setBorder(blackline);
+		drapeau1.setLayout(new BorderLayout());
+		drapeau1.setBounds((int) (boxWidth * 0.125) + height,
+				(int) (boxHeight * 0.5) + boxWidth, (int) (boxWidth * 0.25),
+				(int) (boxHeight * 0.25));
+		this.add(drapeau1);
+
+		Image flag1 = scaleImage(new ImageIcon(game.getTeamFlag(0)).getImage(),
+				(int) (boxWidth * 0.25), (int) (boxHeight * 0.25));
+		Icon scaledFlag1 = new ImageIcon(flag1);
+
+		drapeau1.add(new JLabel(scaledFlag1), BorderLayout.CENTER);
+
+		JPanel drapeau2 = new JPanel();
+		drapeau2.setBorder(blackline);
+		drapeau2.setLayout(new BorderLayout());
+		drapeau2.setBounds((int) (boxWidth * 0.625) + height,
+				(int) (boxHeight * 0.5) + boxWidth, (int) (boxWidth * 0.25),
+				(int) (boxHeight * 0.25));
+		this.add(drapeau2);
+
+		Image flag2 = scaleImage(new ImageIcon(game.getTeamFlag(1)).getImage(),
+				(int) (boxWidth * 0.25), (int) (boxHeight * 0.25));
+		Icon scaledFlag2 = new ImageIcon(flag2);
+
+		drapeau2.add(new JLabel(scaledFlag2), BorderLayout.CENTER);
+
+		JLabel vs = new JLabel("VS");
+		JLabel team1 = new JLabel(game.getTeamName(0).toUpperCase());
+		JLabel team2 = new JLabel(game.getTeamName(1).toUpperCase());
+
+		Font police;
+		try {
+			police = Font.createFont(Font.TRUETYPE_FONT, new File(
+					"fonts/font.ttf"));
+			police = police.deriveFont(20f);
+			vs.setFont(police);
+			team1.setFont(police);
+			team2.setFont(police);
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		vs.setForeground(Color.ORANGE);
+		team1.setForeground(Color.ORANGE);
+		team2.setForeground(Color.ORANGE);
+
+		vs.setBounds((int) (boxWidth * 0.375) + height, (int) (boxHeight * 0.5)
+				+ boxWidth, (int) (boxWidth * 0.25), (int) (boxHeight * 0.25));
+		team1.setBounds((int) (boxWidth * 0.125) + height, (int) (boxHeight * 0.25)
+				+ boxWidth, (int) (boxWidth * 0.25), (int) (boxHeight * 0.25));
+		team2.setBounds((int) (boxWidth * 0.625) + height, (int) (boxHeight * 0.25)
+				+ boxWidth, (int) (boxWidth * 0.25), (int) (boxHeight * 0.25));
+
+		vs.setHorizontalAlignment(SwingConstants.CENTER);
+		vs.setVerticalAlignment(SwingConstants.CENTER);
+		team1.setHorizontalAlignment(SwingConstants.CENTER);
+		team2.setHorizontalAlignment(SwingConstants.CENTER);
+
+		this.add(vs);
+		this.add(team1);
+		this.add(team2);
+	}
+
 	private static Image scaleImage(Image source, int width, int height) {
 		BufferedImage img = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);
@@ -636,15 +721,17 @@ public class Jeu extends JComponent {
 
 		this.vue = vue;
 
-		game.getFrame().setTitle("Virtual War | " + game.getTeamName(vue.getEquipe()));
+		game.getFrame().setTitle(
+				"Virtual War | " + game.getTeamName(vue.getEquipe()));
 
 		for (JPanel cellule : cellules) {
 			cellule.removeAll();
 		}
-		
+
 		SwingUtilities.updateComponentTreeUI(this);
-		
-		JOptionPane.showMessageDialog(game.getFrame(), message + "\nEn attente de " + game.getTeamName(vue.getEquipe()));
+
+		JOptionPane.showMessageDialog(game.getFrame(), message
+				+ "\nEn attente de " + game.getTeamName(vue.getEquipe()));
 
 		Cellule[][] cellules = vue.getPlateau().getPlateau();
 		for (int i = 0; i < cellules.length; i++) {

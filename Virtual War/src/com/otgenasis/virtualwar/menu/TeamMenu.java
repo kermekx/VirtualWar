@@ -56,6 +56,7 @@ public class TeamMenu extends JComponent {
 
 	private void addTitle() {
 		JLabel title = new JLabel("VIRTUAL WAR");
+		JLabel vs = new JLabel("VERSUS");
 
 		Font police;
 		try {
@@ -63,6 +64,7 @@ public class TeamMenu extends JComponent {
 					"fonts/font.ttf"));
 			police = police.deriveFont(50f);
 			title.setFont(police);
+			vs.setFont(police);
 		} catch (FontFormatException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -70,6 +72,8 @@ public class TeamMenu extends JComponent {
 		}
 
 		title.setForeground(Color.ORANGE);
+		vs.setForeground(Color.ORANGE);
+
 
 		Rectangle bounds = game.getFrame().getBounds();
 		int width = bounds.width;
@@ -77,8 +81,15 @@ public class TeamMenu extends JComponent {
 
 		title.setBounds((int) (width * 0.25), 0, (int) (width * 0.5),
 				(int) (height * 0.25));
+		vs.setBounds((int) (width * 0.375), (int) (height * 0.5), (int) (width * 0.25),
+				(int) (height * 0.25));
+		
 		title.setHorizontalAlignment(SwingConstants.CENTER);
+		vs.setHorizontalAlignment(SwingConstants.CENTER);
+		vs.setVerticalAlignment(SwingConstants.CENTER);
+		
 		this.add(title);
+		this.add(vs);
 	}
 
 	private void addButtons() {
