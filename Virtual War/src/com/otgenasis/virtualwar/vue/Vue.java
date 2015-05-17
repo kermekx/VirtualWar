@@ -153,8 +153,17 @@ public class Vue {
 	public boolean canMove(int i, int j) {
 		if (i >= 0 && j >= 0 && i < plateau.getPlateau().length
 				&& j < plateau.getPlateau()[0].length) {
-			if (plateau.getPlateau()[i][j] instanceof Base)
-				return (((Base) plateau.getPlateau()[i][j]).getEquipe() == equipe);
+			if (plateau.getPlateau()[i][j] instanceof Base) {
+				if (((Base) plateau.getPlateau()[i][j]).getEquipe() == equipe) {
+					int k = 0;
+					while (this.getRobot(k) != null)
+						k++;
+					if (((Base) plateau.getPlateau()[i][j]).getUnites().size() + 1 == k)
+						return false;
+					return true;
+				}
+			}
+				
 			else
 				return (plateau.getPlateau()[i][j].getContenu() == null && !plateau
 						.getPlateau()[i][j].isObstacle());

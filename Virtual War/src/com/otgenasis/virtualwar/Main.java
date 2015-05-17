@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import com.otgenasis.virtualwar.frame.GameFrame;
@@ -50,34 +51,64 @@ public class Main {
 	 */
 	private int joueur;
 
+	/**
+	 * creation de la fenetre
+	 * @param frame
+	 */
 	public Main(JFrame frame) {
 		this.frame = frame;
 	}
 
+	/**
+	 * renvoie la fenetre
+	 * @return
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * lance la fenetre
+	 */
 	public void run() {
 		this.setScene(new MainMenu(this));
 	}
 
+	/**
+	 * change l'affichage
+	 * @param component
+	 */
 	public void setScene(JComponent component) {
 		frame.getContentPane().removeAll();
 		frame.getContentPane().add(component);
 		SwingUtilities.updateComponentTreeUI(frame);
 	}
 
+	/**
+	 * change la taille du plateau
+	 * @param hauteur
+	 * @param largeur
+	 * @param obstacles
+	 */
 	public void setSize(int hauteur, int largeur, int obstacles) {
 		this.hauteur = hauteur;
 		this.largeur = largeur;
 		this.obstacles = obstacles;
 	}
 
+	/**
+	 * renvoie la taille du plateau
+	 * @return
+	 */
 	public Point getSize() {
 		return new Point(hauteur, largeur);
 	}
 
+	/**
+	 * change les troupes des equipe
+	 * @param joueur1
+	 * @param joueur2
+	 */
 	public void setTroupes(String[] joueur1, String[] joueur2) {
 		troupes_1 = new ArrayList<String>();
 		troupes_2 = new ArrayList<String>();
@@ -90,24 +121,47 @@ public class Main {
 		}
 	}
 
+	/**
+	 * change le nom des equipes
+	 * @param teamName1
+	 * @param teamName2
+	 */
 	public void setTeamName(String teamName1, String teamName2) {
 		team1 = teamName1;
 		team2 = teamName2;
 	}
 
+	/**
+	 * change les chemins de drapeau des equipes
+	 * @param player1Flag
+	 * @param player2Flag
+	 */
 	public void setTeamFlag(String player1Flag, String player2Flag) {
 		flag1 = player1Flag;
 		flag2 = player2Flag;
 	}
 
+	/**
+	 * nom de l'equipe
+	 * @param equipe
+	 * @return
+	 */
 	public String getTeamName(int equipe) {
 		return (equipe == 0) ? team1 : team2;
 	}
 	
+	/**
+	 * chemin du drapeau de l'equipe
+	 * @param equipe
+	 * @return
+	 */
 	public String getTeamFlag(int equipe) {
 		return (equipe == 0) ? flag1 : flag2;
 	}
 
+	/**
+	 * lance la partie
+	 */
 	public void launch() {
 		vues = new ArrayList<Vue>();
 		plateau = new Plateau(largeur, hauteur, obstacles);
@@ -166,15 +220,36 @@ public class Main {
 		this.nextTurn();
 	}
 
+	/**
+	 * tour suivant
+	 */
 	public void nextTurn() {
-		vues.get(joueur).heal();
-		jeu.setVue(vues.get(joueur));
-		SwingUtilities.updateComponentTreeUI(frame);
-		joueur = (joueur + 1) % 2;
+		if (isFinished())
+			endGame();
+		else {
+			vues.get(joueur).heal();
+			jeu.setVue(vues.get(joueur));
+			SwingUtilities.updateComponentTreeUI(frame);
+			joueur = (joueur + 1) % 2;
+		}
 	}
 
+	/**
+	 * fin de la partie
+	 */
+	private void endGame() {
+		JOptionPane.showMessageDialog(getFrame(), ((vues.get(0).getRobot(0) == null) ? team2 : team1) + " a gagner!");
+		setScene(new MainMenu(this));
+	}
+
+	/**
+	 * renvoie si la partie est fini
+	 * @return boolean
+	 */
 	private boolean isFinished() {
-		// TODO Auto-generated method stub
+		if (vues.get(0).getRobot(0) == null || vues.get(1).getRobot(0) == null )
+			return true;
+		
 		return false;
 	}
 }

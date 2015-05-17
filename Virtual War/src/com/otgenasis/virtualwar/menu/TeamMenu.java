@@ -217,6 +217,18 @@ public class TeamMenu extends JComponent {
 				}
 			}
 		});
+		
+		JButton boutonRetour = new JButton("Retour");
+		boutonRetour.setBounds((int) (width * 0.8), (int) (height * 0.85),
+				(int) (width * 0.15), (int) (height * 0.05));
+
+		this.add(boutonRetour);
+
+		boutonRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game.setScene(new MainMenu(game));
+			}
+		});
 	}
 
 	private void addJTextField() {
