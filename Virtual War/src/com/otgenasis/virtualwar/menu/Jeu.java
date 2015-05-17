@@ -48,17 +48,40 @@ import com.otgenasis.virtualwar.vue.Vue;
 
 public class Jeu extends JComponent {
 
+	/**
+	 * Class principal du jeu
+	 */
 	private Main game;
 
+	/**
+	 * listes des case du tableau pour afficher les images
+	 */
 	private List<JPanel> cellules = new ArrayList<JPanel>();
+	/**
+	 * liste des images
+	 */
 	private Map<String, Icon> equivalents;
 
+	/**
+	 * vue à afficher
+	 */
 	private Vue vue;
 
+	/**
+	 * panel de la selection
+	 */
 	private JPanel choix;
 
+	/**
+	 * message de degat
+	 */
 	private String message = "";
 
+	/**
+	 * cree un menu d'affichage du jeu
+	 * 
+	 * @param game
+	 */
 	public Jeu(Main game) {
 		this.game = game;
 
@@ -68,6 +91,9 @@ public class Jeu extends JComponent {
 		this.addVersus();
 	}
 
+	/**
+	 * affichage du tableau
+	 */
 	private void addGrid() {
 		Rectangle bounds = game.getFrame().getBounds();
 		int width = bounds.width;
@@ -538,6 +564,9 @@ public class Jeu extends JComponent {
 		this.add(choix);
 	}
 
+	/**
+	 * affichage des images
+	 */
 	private void loadImages() {
 		Rectangle bounds = game.getFrame().getBounds();
 		int height = bounds.height;
@@ -611,6 +640,9 @@ public class Jeu extends JComponent {
 		equivalents.put("mine", scaledMine);
 	}
 
+	/**
+	 * affichage des noms d'equipes
+	 */
 	private void addVersus() {
 		Rectangle bounds = game.getFrame().getBounds();
 		int width = bounds.width;
@@ -672,10 +704,12 @@ public class Jeu extends JComponent {
 
 		vs.setBounds((int) (boxWidth * 0.375) + height, (int) (boxHeight * 0.5)
 				+ boxWidth, (int) (boxWidth * 0.25), (int) (boxHeight * 0.25));
-		team1.setBounds((int) (boxWidth * 0.125) + height, (int) (boxHeight * 0.25)
-				+ boxWidth, (int) (boxWidth * 0.25), (int) (boxHeight * 0.25));
-		team2.setBounds((int) (boxWidth * 0.625) + height, (int) (boxHeight * 0.25)
-				+ boxWidth, (int) (boxWidth * 0.25), (int) (boxHeight * 0.25));
+		team1.setBounds((int) (boxWidth * 0.125) + height,
+				(int) (boxHeight * 0.25) + boxWidth, (int) (boxWidth * 0.25),
+				(int) (boxHeight * 0.25));
+		team2.setBounds((int) (boxWidth * 0.625) + height,
+				(int) (boxHeight * 0.25) + boxWidth, (int) (boxWidth * 0.25),
+				(int) (boxHeight * 0.25));
 
 		vs.setHorizontalAlignment(SwingConstants.CENTER);
 		vs.setVerticalAlignment(SwingConstants.CENTER);
@@ -687,6 +721,9 @@ public class Jeu extends JComponent {
 		this.add(team2);
 	}
 
+	/**
+	 * redimension de l'image
+	 */
 	private static Image scaleImage(Image source, int width, int height) {
 		BufferedImage img = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_ARGB);
@@ -698,12 +735,18 @@ public class Jeu extends JComponent {
 		return img;
 	}
 
+	/**
+	 * met une image a la cellule
+	 */
 	private void setCellule(String type, int x, int y) {
 		cellules.get(x + y * game.getSize().x).removeAll();
 		cellules.get(x + y * game.getSize().x).add(
 				new JLabel(equivalents.get(type)), BorderLayout.CENTER);
 	}
 
+	/**
+	 * renvoie l'image dans la cellule
+	 */
 	private String getCellule(int pos) {
 		Iterator<String> it = equivalents.keySet().iterator();
 		if (cellules.get(pos).getComponentCount() == 0)
@@ -717,6 +760,9 @@ public class Jeu extends JComponent {
 		return "";
 	}
 
+	/**
+	 * affichage de la vue
+	 */
 	public void setVue(Vue vue) {
 
 		this.vue = vue;

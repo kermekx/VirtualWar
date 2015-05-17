@@ -80,14 +80,14 @@ public class Tireur extends Robot {
 					if ((difX == 0 || difY == 0) && difX <= 3 && difY <= 3) {
 						boolean canShoot = true;
 						for (int i = 1; i < ((difX != 0) ? difX : difY); i++) {
-							if (!vue.canMove(getCoord().getX()
-									+ ((difX == 0) ? 0 : i
-											* ((difX > 0) ? 1 : -1)),
+							if (!vue.canMove(
+									getCoord().getX()
+											+ ((difX == 0) ? 0
+													: ((difX > 0) ? i : -i)),
 									getCoord().getY()
-											+ ((difY == 0) ? 0 : i
-													* ((difY > 0) ? 1 : -1))))
-								;
-							canShoot = false;
+											+ ((difY == 0) ? 0
+													: ((difY > 0) ? i : -i))))
+								canShoot = false;
 						}
 						if (canShoot)
 							cibles.add(r);

@@ -29,6 +29,7 @@ public abstract class Robot {
 	protected Vue vue;
 
 	protected int nbrMines = 10;
+
 	/**
 	 * créer un robot en x, y de l'equipe i avec la vue corespondante
 	 * 
@@ -195,20 +196,30 @@ public abstract class Robot {
 	public abstract String getType();
 
 	/**
-	 * deplacements possibles
+	 * deplacements possiblent
 	 * 
 	 * @return liste de coordonnees
 	 */
 	public abstract List<Coordonnees> getDeplacements();
 
+	/**
+	 * Tirs possiblent
+	 * 
+	 * @return liste de robots
+	 */
 	public abstract List<Robot> getCibles();
-	
+
+	/**
+	 * Possages de mine possiblent
+	 * 
+	 * @return liste de robots
+	 */
 	public abstract List<Coordonnees> getPosMines();
 
 	public void setMines(int i) {
 		nbrMines = i;
 	}
-	
+
 	public int getMines() {
 		return nbrMines;
 	}

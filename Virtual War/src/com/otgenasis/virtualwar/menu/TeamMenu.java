@@ -33,17 +33,43 @@ import com.otgenasis.virtualwar.Main;
 
 public class TeamMenu extends JComponent {
 
+	/**
+	 * Class principal du jeu
+	 */
 	private Main game;
 
+	/**
+	 * case d'entreedu nom de l'equipe 1
+	 */
 	private JTextField player1TeamName;
+	/**
+	 * case d'entreedu nom de l'equipe 2
+	 */
 	private JTextField player2TeamName;
 
+	/**
+	 * Chemin du drapeau de l'equipe 1
+	 */
 	private String player1Flag;
+	/**
+	 * Chemin du drapeau de l'equipe 2
+	 */
 	private String player2Flag;
 
+	/**
+	 * affichage du drapeau de l'equipe 1
+	 */
 	private JPanel drapeau1;
+	/**
+	 * affichage du drapeau de l'equipe 2
+	 */
 	private JPanel drapeau2;
 
+	/**
+	 * cree un menu de creation des equipes
+	 * 
+	 * @param game
+	 */
 	public TeamMenu(Main game) {
 		this.game = game;
 
@@ -54,6 +80,9 @@ public class TeamMenu extends JComponent {
 		this.addFlagDisplay();
 	}
 
+	/**
+	 * affichage du titre
+	 */
 	private void addTitle() {
 		JLabel title = new JLabel("VIRTUAL WAR");
 		JLabel vs = new JLabel("VERSUS");
@@ -74,20 +103,19 @@ public class TeamMenu extends JComponent {
 		title.setForeground(Color.ORANGE);
 		vs.setForeground(Color.ORANGE);
 
-
 		Rectangle bounds = game.getFrame().getBounds();
 		int width = bounds.width;
 		int height = bounds.height;
 
 		title.setBounds((int) (width * 0.25), 0, (int) (width * 0.5),
 				(int) (height * 0.25));
-		vs.setBounds((int) (width * 0.375), (int) (height * 0.5), (int) (width * 0.25),
-				(int) (height * 0.25));
-		
+		vs.setBounds((int) (width * 0.375), (int) (height * 0.5),
+				(int) (width * 0.25), (int) (height * 0.25));
+
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		vs.setHorizontalAlignment(SwingConstants.CENTER);
 		vs.setVerticalAlignment(SwingConstants.CENTER);
-		
+
 		this.add(title);
 		this.add(vs);
 	}
@@ -148,14 +176,14 @@ public class TeamMenu extends JComponent {
 							new ImageIcon(fichier.getPath()).getImage(),
 							(int) (width * 0.25), (int) (height * 0.25));
 					Icon scaledFlag = new ImageIcon(flag);
-					
-					drapeau1.removeAll();				
+
+					drapeau1.removeAll();
 					drapeau1.add(new JLabel(scaledFlag), BorderLayout.CENTER);
 					update();
 				}
 			}
 		});
-		
+
 		boutonDrapeauJ2.addActionListener(new ActionListener() {
 
 			@Override
@@ -182,8 +210,8 @@ public class TeamMenu extends JComponent {
 							new ImageIcon(fichier.getPath()).getImage(),
 							(int) (width * 0.25), (int) (height * 0.25));
 					Icon scaledFlag = new ImageIcon(flag);
-					
-					drapeau2.removeAll();				
+
+					drapeau2.removeAll();
 					drapeau2.add(new JLabel(scaledFlag), BorderLayout.CENTER);
 					update();
 				}
@@ -241,7 +269,7 @@ public class TeamMenu extends JComponent {
 		g.dispose();
 		return img;
 	}
-	
+
 	private void update() {
 		SwingUtilities.updateComponentTreeUI(this);
 	}

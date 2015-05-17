@@ -18,8 +18,16 @@ import com.otgenasis.virtualwar.Main;
 
 public class LadderMenu extends JComponent {
 
+	/**
+	 * Class principal du jeu
+	 */
 	private Main game;
 
+	/**
+	 * cree un menu d'affichage du classement
+	 * 
+	 * @param game
+	 */
 	public LadderMenu(Main game) {
 		this.game = game;
 
@@ -28,9 +36,12 @@ public class LadderMenu extends JComponent {
 		this.addButtons();
 	}
 
+	/**
+	 * affichage du titre
+	 */
 	private void addTitle() {
 		JLabel title = new JLabel("VIRTUAL WAR");
-		
+
 		Font police;
 		try {
 			police = Font.createFont(Font.TRUETYPE_FONT, new File(
@@ -44,16 +55,20 @@ public class LadderMenu extends JComponent {
 		}
 
 		title.setForeground(Color.ORANGE);
-		
+
 		Rectangle bounds = game.getFrame().getBounds();
 		int width = bounds.width;
 		int height = bounds.height;
-		
-		title.setBounds((int) (width * 0.25), 0, (int) (width * 0.5), (int) (height * 0.25));
+
+		title.setBounds((int) (width * 0.25), 0, (int) (width * 0.5),
+				(int) (height * 0.25));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		this.add(title);
 	}
 
+	/**
+	 * affichage des boutons
+	 */
 	private void addButtons() {
 		Rectangle bounds = game.getFrame().getBounds();
 		int width = bounds.width;
@@ -62,9 +77,9 @@ public class LadderMenu extends JComponent {
 		JButton boutonRetour = new JButton("Retour");
 		boutonRetour.setBounds((int) (width * 0.25), (int) (height * 0.85),
 				(int) (width * 0.5), (int) (height * 0.05));
-		
+
 		this.add(boutonRetour);
-		
+
 		boutonRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.setScene(new MainMenu(game));

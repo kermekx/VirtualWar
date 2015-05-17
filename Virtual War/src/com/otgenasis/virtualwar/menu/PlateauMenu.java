@@ -21,12 +21,29 @@ import com.otgenasis.virtualwar.Main;
 
 public class PlateauMenu extends JComponent {
 
+	/**
+	 * Class principal du jeu
+	 */
 	private Main game;
 
+	/**
+	 * hauteur du plateau
+	 */
 	private int hauteur = 5;
+	/**
+	 * largeur du plateau
+	 */
 	private int largeur = 5;
+	/**
+	 * taux d'obstacle (0 à 100)
+	 */
 	private int obstacles = 25;
 
+	/**
+	 * cree un menu d'edition du plateau
+	 * 
+	 * @param game
+	 */
 	public PlateauMenu(Main game) {
 		this.game = game;
 
@@ -36,6 +53,9 @@ public class PlateauMenu extends JComponent {
 		this.addSliders();
 	}
 
+	/**
+	 * affichage du titre
+	 */
 	private void addTitle() {
 		Rectangle bounds = game.getFrame().getBounds();
 		int width = bounds.width;
@@ -70,24 +90,27 @@ public class PlateauMenu extends JComponent {
 
 		title.setBounds((int) (width * 0.25), 0, (int) (width * 0.5),
 				(int) (height * 0.25));
-		largeur.setBounds(0, (int) (height * 0.3),
-				(int) (width * 0.25), (int) (height * 0.15));
-		hauteur.setBounds(0, (int) (height * 0.5),
-				(int) (width * 0.25), (int) (height * 0.15));
-		obstacles.setBounds(0, (int) (height * 0.7),
-				(int) (width * 0.25), (int) (height * 0.15));
+		largeur.setBounds(0, (int) (height * 0.3), (int) (width * 0.25),
+				(int) (height * 0.15));
+		hauteur.setBounds(0, (int) (height * 0.5), (int) (width * 0.25),
+				(int) (height * 0.15));
+		obstacles.setBounds(0, (int) (height * 0.7), (int) (width * 0.25),
+				(int) (height * 0.15));
 
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		largeur.setHorizontalAlignment(SwingConstants.RIGHT);
 		hauteur.setHorizontalAlignment(SwingConstants.RIGHT);
 		obstacles.setHorizontalAlignment(SwingConstants.RIGHT);
-		
+
 		this.add(title);
 		this.add(largeur);
 		this.add(hauteur);
 		this.add(obstacles);
 	}
 
+	/**
+	 * affichage des boutons
+	 */
 	private void addButtons() {
 		Rectangle bounds = game.getFrame().getBounds();
 		int width = bounds.width;
@@ -107,6 +130,9 @@ public class PlateauMenu extends JComponent {
 		});
 	}
 
+	/**
+	 * affichage des sliders
+	 */
 	private void addSliders() {
 
 		Rectangle bounds = game.getFrame().getBounds();
