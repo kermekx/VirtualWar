@@ -10,8 +10,14 @@ import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
 
+	/**
+	 * renvoie si l'affichage est en plein ecran
+	 */
 	private boolean fullScreen = false;
 
+	/**
+	 * creer une frame
+	 */
 	public GameFrame() {
 
 		this.setTitle("Virtual War | O.T. Genasis");
@@ -33,10 +39,18 @@ public class GameFrame extends JFrame {
 		this.setVisible(true);
 	}
 
+	/**
+	 * renvoie si l'affichage est en plein ecran
+	 * 
+	 * @return true = fullscreen
+	 */
 	public boolean isFullScreen() {
 		return fullScreen;
 	}
 
+	/**
+	 * change l'affiche en plein ecran ou en fenetre
+	 */
 	public void switchScreen() {
 		if (fullScreen) {
 			this.setVisible(false);
@@ -66,14 +80,14 @@ public class GameFrame extends JFrame {
 			this.setExtendedState(Frame.MAXIMIZED_BOTH);
 			this.setUndecorated(true);
 			this.pack();
-			
+
 			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 			double width = screenSize.getWidth();
 			double height = screenSize.getHeight();
 
 			Rectangle bounds = new Rectangle(0, 0, (int) width, (int) height);
 			this.setBounds(bounds);
-			
+
 			this.setVisible(true);
 			fullScreen = true;
 		}
