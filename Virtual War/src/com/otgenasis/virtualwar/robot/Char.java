@@ -88,8 +88,21 @@ public class Char extends Robot {
 							- this.getCoord().getX());
 					int difY = Math.abs(r.getCoord().getY()
 							- this.getCoord().getY());
-					if ((difX == 0 || difY == 0) && difX <= 10 && difY <= 10)
-						cibles.add(r);
+					if ((difX == 0 || difY == 0) && difX <= 10 && difY <= 10) {
+						boolean canShoot = true;
+						for (int i = 1; i < ((difX != 0) ? difX : difY); i++) {
+							if (!vue.canMove(getCoord().getX()
+									+ ((difX == 0) ? 0 : i
+											* ((difX > 0) ? 1 : -1)),
+									getCoord().getY()
+											+ ((difY == 0) ? 0 : i
+													* ((difY > 0) ? 1 : -1))))
+								;
+							canShoot = false;
+						}
+						if (canShoot)
+							cibles.add(r);
+					}
 				}
 			}
 		}
